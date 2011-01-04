@@ -1,0 +1,29 @@
+<% title "Modeling Agents" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Gender</th>
+    <th>Dob</th>
+    <th>Bio</th>
+    <th>Contact Email</th>
+    <th>Facebook</th>
+    <th>Phone</th>
+  </tr>
+  <% for modeling_agent in @modeling_agents %>
+    <tr>
+      <td><%= modeling_agent.user_id %></td>
+      <td><%= modeling_agent.gender %></td>
+      <td><%= modeling_agent.DOB %></td>
+      <td><%= modeling_agent.bio %></td>
+      <td><%= modeling_agent.contact_email %></td>
+      <td><%= modeling_agent.facebook %></td>
+      <td><%= modeling_agent.phone %></td>
+      <td><%= link_to "Show", modeling_agent %></td>
+      <td><%= link_to "Edit", edit_modeling_agent_path(modeling_agent) %></td>
+      <td><%= link_to "Destroy", modeling_agent, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Modeling Agent", new_modeling_agent_path %></p>

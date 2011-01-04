@@ -1,0 +1,17 @@
+one:
+  user_id: 1
+  gender: MyString
+  DOB: 2011-01-04
+  bio: MyText
+  contact_email: MyString
+  facebook: MyString
+  phone: MyString
+
+two:
+  user_id: 1
+  gender: MyString
+  DOB: 2011-01-04
+  bio: MyText
+  contact_email: MyString
+  facebook: MyString
+  phone: MyString

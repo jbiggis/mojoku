@@ -1,0 +1,28 @@
+<% title "Photographers" %>
+
+<table>
+  <tr>
+
+    <th>Gender</th>
+    <th>Dob</th>
+    <th>Bio</th>
+    <th>Contact Email</th>
+    <th>Facebook</th>
+    <th>Phone</th>
+  </tr>
+  <% for photographer in @photographers %>
+    <tr>
+      <td><%= photographer.gender %></td>
+      <td><%= photographer.DOB %></td>
+      <td><%= photographer.bio %></td>
+      <td><%= photographer.contact_email %></td>
+      <td><%= photographer.facebook %></td>
+      <td><%= photographer.phone %></td>
+      <td><%= link_to "Show", photographer %></td>
+      <td><%= link_to "Edit", edit_photographer_path(photographer) %></td>
+      <td><%= link_to "Destroy", photographer, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Photographer", new_photographer_path %></p>

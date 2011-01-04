@@ -1,0 +1,57 @@
+<% title "Model" %>
+
+
+<p>
+  <strong>Gender:</strong>
+  <%= @model.gender %>
+</p>
+<p>
+  <strong>Dob:</strong>
+  <%= @model.DOB %>
+</p>
+<p>
+  <strong>Height:</strong>
+  <%= @model.height %>
+</p>
+<p>
+  <strong>Weight:</strong>
+  <%= @model.weight %>
+</p>
+<p>
+  <strong>Measurement Chest:</strong>
+  <%= @model.measurement_chest %>
+</p>
+<p>
+  <strong>Measurement Waist:</strong>
+  <%= @model.measurement_waist %>
+</p>
+<p>
+  <strong>Measurement Hip:</strong>
+  <%= @model.measurement_hip %>
+</p>
+<p>
+  <strong>Shoe Size:</strong>
+  <%= @model.shoe_size %>
+</p>
+<p>
+  <strong>Bio:</strong>
+  <%= @model.bio %>
+</p>
+<p>
+  <strong>Contact Email:</strong>
+  <%= @model.contact_email %>
+</p>
+<p>
+  <strong>Facebook:</strong>
+  <%= @model.facebook %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @model.phone %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_model_path(@model) %> |
+  <%= link_to "Destroy", @model, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", models_path %>
+</p>

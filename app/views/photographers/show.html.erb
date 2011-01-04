@@ -1,0 +1,33 @@
+<% title "Photographer" %>
+
+
+<p>
+  <strong>Gender:</strong>
+  <%= @photographer.gender %>
+</p>
+<p>
+  <strong>Dob:</strong>
+  <%= @photographer.DOB %>
+</p>
+<p>
+  <strong>Bio:</strong>
+  <%= @photographer.bio %>
+</p>
+<p>
+  <strong>Contact Email:</strong>
+  <%= @photographer.contact_email %>
+</p>
+<p>
+  <strong>Facebook:</strong>
+  <%= @photographer.facebook %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @photographer.phone %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_photographer_path(@photographer) %> |
+  <%= link_to "Destroy", @photographer, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", photographers_path %>
+</p>

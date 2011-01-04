@@ -1,0 +1,64 @@
+<%= form_for @model do |f| %>
+  <% if @model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@model.errors.count, "error") %> prohibited this model from being saved:</h2>
+
+      <ul>
+      <% @model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <p>
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender %>
+  </p>
+  <p>
+    <%= f.label :DOB %><br />
+    <%= f.date_select :DOB %>
+  </p>
+  <p>
+    <%= f.label :height %><br />
+    <%= f.text_field :height %>
+  </p>
+  <p>
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <%= f.label :measurement_chest %><br />
+    <%= f.text_field :measurement_chest %>
+  </p>
+  <p>
+    <%= f.label :measurement_waist %><br />
+    <%= f.text_field :measurement_waist %>
+  </p>
+  <p>
+    <%= f.label :measurement_hip %><br />
+    <%= f.text_field :measurement_hip %>
+  </p>
+  <p>
+    <%= f.label :shoe_size %><br />
+    <%= f.text_field :shoe_size %>
+  </p>
+  <p>
+    <%= f.label :bio %><br />
+    <%= f.text_area :bio %>
+  </p>
+  <p>
+    <%= f.label :contact_email %><br />
+    <%= f.text_field :contact_email %>
+  </p>
+  <p>
+    <%= f.label :facebook %><br />
+    <%= f.text_field :facebook %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

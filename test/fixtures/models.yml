@@ -1,0 +1,31 @@
+one:
+  user_id: 1
+  name: MyString
+  gender: MyString
+  DOB: 2011-01-04
+  height: 1
+  weight: 1
+  measurement_chest: 1
+  measurement_waist: 1
+  measurement_hip: 1
+  shoe_size: 9.99
+  bio: MyText
+  contact_email: MyString
+  facebook: MyString
+  phone: MyString
+
+two:
+  user_id: 1
+  name: MyString
+  gender: MyString
+  DOB: 2011-01-04
+  height: 1
+  weight: 1
+  measurement_chest: 1
+  measurement_waist: 1
+  measurement_hip: 1
+  shoe_size: 9.99
+  bio: MyText
+  contact_email: MyString
+  facebook: MyString
+  phone: MyString

@@ -1,0 +1,43 @@
+<%= title "Models" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Dob</th>
+    <th>Height</th>
+    <th>Weight</th>
+    <th>Measurement Chest</th>
+    <th>Measurement Waist</th>
+    <th>Measurement Hip</th>
+    <th>Shoe Size</th>
+    <th>Bio</th>
+    <th>Contact Email</th>
+    <th>Facebook</th>
+    <th>Phone</th>
+  </tr>
+  <% for model in @models %>
+    <tr>
+      <td><%= model.user_id %></td>
+      <td><%= model.name %></td>
+      <td><%= model.gender %></td>
+      <td><%= model.DOB %></td>
+      <td><%= model.height %></td>
+      <td><%= model.weight %></td>
+      <td><%= model.measurement_chest %></td>
+      <td><%= model.measurement_waist %></td>
+      <td><%= model.measurement_hip %></td>
+      <td><%= model.shoe_size %></td>
+      <td><%= model.bio %></td>
+      <td><%= model.contact_email %></td>
+      <td><%= model.facebook %></td>
+      <td><%= model.phone %></td>
+      <td><%= link_to "Show", model %></td>
+      <td><%= link_to "Edit", edit_model_path(model) %></td>
+      <td><%= link_to "Destroy", model, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Model", new_model_path %></p>

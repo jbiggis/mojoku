@@ -1,0 +1,2 @@
+module ModelingAgentsHelper
+end

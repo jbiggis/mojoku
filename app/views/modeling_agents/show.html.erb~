@@ -1,0 +1,36 @@
+<% title "Modeling Agent" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @modeling_agent.user_id %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= @modeling_agent.gender %>
+</p>
+<p>
+  <strong>Dob:</strong>
+  <%= @modeling_agent.DOB %>
+</p>
+<p>
+  <strong>Bio:</strong>
+  <%= @modeling_agent.bio %>
+</p>
+<p>
+  <strong>Contact Email:</strong>
+  <%= @modeling_agent.contact_email %>
+</p>
+<p>
+  <strong>Facebook:</strong>
+  <%= @modeling_agent.facebook %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @modeling_agent.phone %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_modeling_agent_path(@modeling_agent) %> |
+  <%= link_to "Destroy", @modeling_agent, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", modeling_agents_path %>
+</p>
