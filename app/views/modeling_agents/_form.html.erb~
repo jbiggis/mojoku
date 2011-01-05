@@ -1,9 +1,17 @@
 <%= form_for @modeling_agent do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
+
+  <% if @modeling_agent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@modeling_agent.errors.count, "error") %> prohibited this modeling agent from being saved:</h2>
+
+      <ul>
+      <% @modeling_agent.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= f.label :gender %><br />
     <%= f.text_field :gender %>

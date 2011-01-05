@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110104124242) do
+ActiveRecord::Schema.define(:version => 20110105052536) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -46,7 +46,15 @@ ActiveRecord::Schema.define(:version => 20110104124242) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "username"
+    t.string   "gender"
+    t.date     "DOB"
+    t.string   "role"
+    t.string   "phone"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true
@@ -54,20 +62,13 @@ ActiveRecord::Schema.define(:version => 20110104124242) do
 
   create_table "modeling_agents", :force => true do |t|
     t.integer  "member_id"
-    t.string   "gender"
-    t.date     "DOB"
     t.text     "bio"
-    t.string   "contact_email"
-    t.string   "facebook"
-    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "models", :force => true do |t|
     t.integer  "member_id"
-    t.string   "gender"
-    t.date     "DOB"
     t.integer  "height"
     t.integer  "weight"
     t.integer  "measurement_chest"
@@ -75,21 +76,13 @@ ActiveRecord::Schema.define(:version => 20110104124242) do
     t.integer  "measurement_hip"
     t.decimal  "shoe_size"
     t.text     "bio"
-    t.string   "contact_email"
-    t.string   "facebook"
-    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "photographers", :force => true do |t|
     t.integer  "member_id"
-    t.string   "gender"
-    t.date     "DOB"
     t.text     "bio"
-    t.string   "contact_email"
-    t.string   "facebook"
-    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

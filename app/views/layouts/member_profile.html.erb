@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mojoku</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+	<div id="logo">
+
+		<%logo = image_tag("logo.jpg", :alt => "Mojoku!") %>
+		<%= link_to logo, root_url %>
+
+	</div>
+      
+	<div id='nav'>
+
+		<%= render 'shared/navigation' %>
+
+	</div>
+	
+
+	
+	<%= render 'shared/member_navigation' %>	
+
+	<div id="content">	
+
+		<h2>Edit Profile</h2>
+		
+		<div id="content-left">
+			
+	     		<%= render 'shared/member_profile_navigation' %>
+	      
+		</div>
+
+		<div id="content-right">
+	
+			<%= yield %>
+		</div>
+	
+	</div>
+</body>
+</html>

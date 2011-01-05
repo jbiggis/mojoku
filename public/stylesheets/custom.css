@@ -11,5 +11,43 @@ float:left;
 
 
 #content {
+width:960px;
 clear:both;
-{
+}
+
+#content h2 {
+margin:20px;
+}
+
+#content-left{
+float:left;
+width:170px;
+margin:20px;
+}
+
+#content-left ul {
+margin:0;
+padding:0;
+list-style:none;
+text-decoration:none;
+}
+
+#content-right {
+float:left;
+width:700px;
+}
+
+#content-right h3 {
+margin:0;
+}
+
+
+#member-nav {
+clear:both;
+float:left;
+margin:20px;
+}
+
+#member-profile-nav {
+float:left;
+}

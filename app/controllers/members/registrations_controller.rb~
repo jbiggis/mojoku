@@ -1,21 +1,32 @@
 
-class Members::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
 	
   def create
    build_resource
 
-    if resource.save
+    if resource.valid?
 	
-	if paradms[:type] == model
-	    resource.model.create!
+	if params[:type] == 'model'
+ 	    
+		resource.role = 'model'
+	    	resource.save
+
+	    	resource.create_model
 	    
-	    elsif params[:type]== photographer
+	elsif params[:type] == 'photographer'
 	    
-	    resource.photographer.create!
+		resource.role = 'photographer'
+	    	resource.save
+
+	    	resource.create_photographer
 	    
-	    elsif params[:type] == modeling_agent
+	elsif params[:type] == 'modeling_agent'
 	    
-	    resource.modeling_agent.create!
+		resource.role = 'modeling_agent'
+	    	resource.save
+	    
+		resource.create_modeling_agent
+	
 	end
 
       if resource.active?

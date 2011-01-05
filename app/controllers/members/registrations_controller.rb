@@ -1,21 +1,32 @@
 
 class Members::RegistrationsController < Devise::RegistrationsController
-	asdf
-  def safcreate
-asdf    build_resource
-
-    if resource.save
 	
-	if paradms[:type] == model
-	    resource.model.create!
+  def create
+   build_resource
+
+    if resource.valid?
+	
+	if params[:type] == 'model'
+ 	    
+		resource.role = 'model'
+	    	resource.save
+
+	    	resource.create_model
 	    
-	    elsif params[:type]== photographer
+	elsif params[:type] == 'photographer'
 	    
-	    resource.photographer.create!
+		resource.role = 'photographer'
+	    	resource.save
+
+	    	resource.create_photographer
 	    
-	    elsif params[:type] == modeling_agent
+	elsif params[:type] == 'modeling_agent'
 	    
-	    resource.modeling_agent.create!
+		resource.role = 'modeling_agent'
+	    	resource.save
+	    
+		resource.create_modeling_agent
+	
 	end
 
       if resource.active?

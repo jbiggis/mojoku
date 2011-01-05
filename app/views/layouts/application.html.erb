@@ -7,21 +7,32 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+
 	<div id="logo">
 
 		<%logo = image_tag("logo.jpg", :alt => "Mojoku!") %>
 		<%= link_to logo, root_url %>
+
 	</div>
-  <div id='nav'>
+      
+	<div id='nav'>
+	
+	      
+		<%= render 'shared/navigation' %>
 
 	
-  <%= render 'shared/navigation' %>
+	</div>
 
-  </div>
-  <div id="content">
+      
+	<div id="content">
 
-<%= yield %>
+      
+		<%= yield %>
+      
+		
+      
+	</div>
 
-</div>
+
 </body>
 </html>

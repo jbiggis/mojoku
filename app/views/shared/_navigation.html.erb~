@@ -1,13 +1,13 @@
 <div id="user-nav" class="round">  
 	<% if admin_signed_in? %>
-	<span class="greeting">Hi <%= current_admin.name %>! </span> 
+	<span class="greeting">Hi <%= current_admin.first_name %>! </span> 
 	<%= link_to "Admin panel", "/admin/home", :class => "nav-link" %>
        	<%= link_to "Sign out", destroy_admin_session_path, :class => "nav-link" %>	
 
 	
       <% elsif member_signed_in? %>  
-	      <span class="greeting"><%=t :greeting%> <%= current_user.name %>! </span>
-      	<%= link_to t(:my_account), "/member/my_coupons", :class => "nav-link" %>	
+	      <span class="greeting"><%=t :greeting%> <%= current_member.first_name %>! </span>
+      	<%= link_to t(:my_account), "/members/edit", :class => "nav-link" %>	
 	<%= link_to t(:signout), destroy_member_session_path, :class => "nav-link" %>
 
       <% else %>  

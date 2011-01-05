@@ -1,4 +1,27 @@
 Mojoku::Application.routes.draw do
+  get "member/home"
+
+  get "member/profile"
+
+  get "member/editprofile"
+  
+  get "member/edit_profile_pic"
+  
+  get "member/edit_email"
+  
+  get "member/edit_password"
+ 
+  get "member/edit_personal_details"
+
+  get "member/edit_contact_info"
+    
+  put "member/updateprofile"
+  
+  get "member/portfolio"
+
+
+  get "public/home"
+
   devise_for :admins
 
   devise_for :members,  :controllers => { :registrations => "members/registrations" }
@@ -62,7 +85,7 @@ Mojoku::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "models#index"
+   root :to => "public#home"
 
   # See how all your routes lay out with "rake routes"
 

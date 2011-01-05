@@ -8,7 +8,9 @@
 </head>
 <body>
 	<div id="logo">
-		<%= image_tag("logo.jpg", :alt => "Mojoku!") %>
+
+		<%logo = image_tag("logo.jpg", :alt => "Mojoku!") %>
+		<%= link_to logo, root_url %>
 	</div>
   <div id='nav'>
 

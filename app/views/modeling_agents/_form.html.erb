@@ -12,29 +12,29 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
-  </p>
-  <p>
-    <%= f.label :DOB %><br />
-    <%= f.date_select :DOB %>
-  </p>
+
+
   <p>
     <%= f.label :bio %><br />
     <%= f.text_area :bio %>
   </p>
+
+  <%= f.fields_for :members do |builder| %>
+
+
   <p>
-    <%= f.label :contact_email %><br />
-    <%= f.text_field :contact_email %>
+    <%= builder.label :phone %><br />
+    <%= builder.text_field :phone %>
   </p>
   <p>
-    <%= f.label :facebook %><br />
-    <%= f.text_field :facebook %>
+    <%= builder.label :facebook %><br />
+    <%= builder.text_field :facebook %>
   </p>
   <p>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </p>
+    <%= builder.label :twitter %><br />
+    <%= builder.text_field :twitter %>
+    </p>
+
+    <% end %>
   <p><%= f.submit %></p>
 <% end %>
