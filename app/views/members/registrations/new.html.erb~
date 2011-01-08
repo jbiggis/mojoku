@@ -20,10 +20,12 @@
 
   <p><%= f.label :gender %><br />
   Male 
-  <%= f.radio_button :gender, 'male' %></p>
+  <%= f.radio_button :gender, 'male' %>
   Female
   <%= f.radio_button :gender, 'female' %></p>
 
+ <p><%= f.label :DOB, 'Date of Birth' %><br />
+  <%= f.date_select :DOB %></p>
 
   <p>I am a...</p>
   <% [ 'model', 'photographer', 'modeling agent' ].each do |type| %>

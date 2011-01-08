@@ -21,10 +21,16 @@
 
 	</div>
 	
-	<div id="content">
-		
-		<%= render 'shared/member_navigation' %>	
-		
+	<%= render 'shared/member_header' %>
+	<%= render 'shared/member_navigation' %>	
+
+	<div id="content">	
+ <% flash.each do |key, value| %>
+
+	  <div class="flash <%= key %>"><%= value %></div>
+
+  <% end %>
+
 		<h2>Edit Profile</h2>
 		
 		<div id="content-left">

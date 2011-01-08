@@ -15,6 +15,17 @@
 
 
   <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+
+
+  <p>
     <%= f.label :gender %><br />
     <%= f.text_field :gender %>
   </p>
@@ -23,9 +34,13 @@
     <%= f.date_select :DOB %>
     </p>
 
-
-  <%= f.fields_for :model do |builder|%>
-  <p>
+    <% role = @member.role %>
+  <%= f.fields_for role do |builder|%>
+	 
+ 
+	  <% if role == 'model' %>
+	 
+	  <p>
     <%= builder.label :height %><br />
     <%= builder.text_field :height %>
   </p>
@@ -53,7 +68,17 @@
     <%= builder.label :bio %><br />
     <%= builder.text_area :bio %>
     </p>
-
+<% elsif role == 'photographer' %>
+  <p>
+    <%= builder.label :bio %><br />
+    <%= builder.text_area :bio %>
+    </p>
+<% elsif role == 'modeling_agent' %>
+  <p>
+    <%= builder.label :bio %><br />
+    <%= builder.text_area :bio %>
+    </p>
+    <% end %>
     <% end %>
 
 

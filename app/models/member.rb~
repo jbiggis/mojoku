@@ -11,7 +11,7 @@ has_one :model
 has_one :photographer
 has_one :modeling_agent
 
-accepts_nested_attributes :model
+accepts_nested_attributes_for :model
 
 
 end

@@ -20,11 +20,19 @@
 		<%= render 'shared/navigation' %>
 
 	</div>
+
+	<div id = 'member-header' >
+
+		<%= render 'shared/member_header' %>
+
+	</div>
+
+	<%= render 'shared/member_navigation' %>
 	
 	<div id="content">
 
 		<div id="content-left">
-		<%= render 'shared/member_navigation' %>
+
 		</div>
 
 		<div id="content-right">

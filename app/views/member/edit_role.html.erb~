@@ -1,4 +1,4 @@
-<h3><%= title "Email" %></h3>
+<h3><%= title "Role" %></h3>
 
 <%= form_for @member, :url => { :action => "updateprofile" } do |f| %>
   <% if @member.errors.any? %>
@@ -14,12 +14,9 @@
   <% end %>
 
 
-
   <p>
-  Current Email:<br/>
-  <%= @member.email%><br/><br/>
-    <%= f.label :email, "Change to:" %><br />
-    <%= f.text_field :email %>
+    <%= f.label :role, "Select Role" %><br />
+    <%= f.select(:role, [['Model', 'model'], ['Photographer', 'photographer'], ['Modeling Agent', 'modeling_agent']]) %>
   </p>
  
 

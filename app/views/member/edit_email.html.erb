@@ -14,11 +14,14 @@
   <% end %>
 
 
+
   <p>
-    <%= f.label :email %><br />
+  Current Email:<br/>
+  <%= @member.email%><br/><br/>
+    <%= f.label :email, "Change to:" %><br />
     <%= f.text_field :email %>
   </p>
  
 
-  <p><%= f.submit "Save Changes" %></p>
+  <p><%= f.submit "Request Change" %></p>
 <% end %>

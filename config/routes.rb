@@ -15,7 +15,12 @@ Mojoku::Application.routes.draw do
 
   get "member/edit_contact_info"
     
+  get "member/edit_role"
+    
   put "member/updateprofile"
+    
+  put "member/updaterole"
+
   
   get "member/portfolio"
 

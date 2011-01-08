@@ -41,12 +41,18 @@ width:700px;
 margin:0;
 }
 
+#member-header {
+clear:both;
+margin:20px;
+}
 
 #member-nav {
 clear:both;
 float:left;
 margin:20px;
 }
+
+
 
 #member-profile-nav {
 float:left;

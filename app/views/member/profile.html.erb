@@ -9,7 +9,23 @@
   <strong>Dob:</strong>
   <%= @member.DOB %>
   </p>
+<p>
+  <strong>Facebook:</strong>
+  <%= @member.facebook %>
+  </p>
 
+<p>
+  <strong>Twitter:</strong>
+  <%= @member.twitter %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @member.phone %>
+</p>
+
+
+<% if @member.role == 'model' %>
 
 <p>
   <strong>Height:</strong>
@@ -40,14 +56,18 @@
   <%= @member.model.bio %>
 </p>
 
-<p>
-  <strong>Facebook:</strong>
-  <%= @member.facebook %>
-</p>
-<p>
-  <strong>Phone:</strong>i
-  <%= @member.phone %>
-</p>
 
 
+ <% elsif @member.role == 'photographer' %>
+<p>
+  <strong>Bio:</strong>
+  <%= @member.photographer.bio %>
+</p>
+
+ <% elsif @member.role == 'modeling_agent' %>
+<p>
+  <strong>Bio:</strong>
+  <%= @member.modeling_agent.bio %>
+</p>
+ <% end %>
 
