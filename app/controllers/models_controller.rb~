@@ -14,6 +14,7 @@ class ModelsController < ApplicationController
   def create
     @model = Model.new(params[:model])
     if @model.save
+	    raise ActiveRecord::Rollback
       flash[:notice] = "Successfully created model."
       redirect_to @model
     else

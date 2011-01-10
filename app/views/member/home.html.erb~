@@ -1,3 +1,0 @@
-<h1>Member#home</h1>
-<p>Find me in app/views/member/home.html.erb</p>
-<%= debug @params %>

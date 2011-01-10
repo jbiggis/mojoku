@@ -1,9 +1,0 @@
-class Model < ActiveRecord::Base
-  attr_accessible :height, :weight, :measurement_chest, :measurement_waist, :measurement_hip, :shoe_size, :bio
-
-  belongs_to :member
-
-
-has_attached_file :photo, :url => "/assets/models/:id/:style/:basename.:extension",
-	:path => ":rails_root/public/assets/models/:id/:style/:basename.:extension"
-end

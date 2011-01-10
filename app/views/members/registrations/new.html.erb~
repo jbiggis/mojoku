@@ -25,15 +25,13 @@
   <%= f.radio_button :gender, 'female' %></p>
 
  <p><%= f.label :DOB, 'Date of Birth' %><br />
-  <%= f.date_select :DOB %></p>
+ <%= f.date_select :DOB, :start_year =>1900, :end_year => Time.now.year %></p>
 
-  <p>I am a...</p>
-  <% [ 'model', 'photographer', 'modeling agent' ].each do |type| %>
-	  <br>
-	  <%= label(type, type) %>
-	  <%= radio_button_tag 'type', type %>
-
-<%end %>
+  <% role_options = [['Model', 'model'], ['Photographer', 'photographer'], ['Modeling Agent', 'modeling_agent']] %>
+ <p>I am a...</p>
+ <p><%= f.label :role, "I am a..."%><br/>
+ <%= f.select :role, role_options  %>
+ 
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 
