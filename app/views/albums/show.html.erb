@@ -1,0 +1,20 @@
+<% title "Album" %>
+
+<p>
+  <strong>Member:</strong>
+  <%= @album.member_id %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @album.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @album.description %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_album_path(@album) %> |
+  <%= link_to "Destroy", @album, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", albums_path %>
+</p>

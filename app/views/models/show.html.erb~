@@ -1,16 +1,6 @@
 <% title "Model" %>
 
-<p>
-<%= @model.name%>
-</p>
-<p>
-  <strong>Gender:</strong>
-  <%= @model.gender %>
-</p>
-<p>
-  <strong>Dob:</strong>
-  <%= @model.DOB %>
-</p>
+
 <p>
   <strong>Height:</strong>
   <%= @model.height %>
@@ -39,18 +29,9 @@
   <strong>Bio:</strong>
   <%= @model.bio %>
 </p>
-<p>
-  <strong>Contact Email:</strong>
-  <%= @model.contact_email %>
-</p>
-<p>
-  <strong>Facebook:</strong>
-  <%= @model.facebook %>
-</p>
-<p>
-  <strong>Phone:</strong>
-  <%= @model.phone %>
-</p>
+
+
+<%= image_tag @model.photo.url%>
 
 <p>
   <%= link_to "Edit", edit_model_path(@model) %> |

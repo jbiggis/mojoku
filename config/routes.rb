@@ -1,4 +1,8 @@
 Mojoku::Application.routes.draw do
+  resources :album_images
+
+  resources :albums
+
   get "member/home"
 
   get "member/profile"
@@ -23,6 +27,21 @@ Mojoku::Application.routes.draw do
 
   
   get "member/portfolio"
+
+ get "member/new_album"
+
+get "member/show_album"
+
+  get "member/edit_album"
+
+get "member/add_images"
+
+
+
+put "member/save_images"
+post "member/save_images"
+
+ post "member/create_album"
 
 
   get "public/home"

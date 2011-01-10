@@ -1,2 +1,23 @@
-<h1>Member#portfolio</h1>
-<p>Find me in app/views/member/portfolio.html.erb</p>
+<h1><% title "My Portfolio" %></h1>
+
+
+<table>
+  <tr>
+
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+  <% for album in @albums %>
+    <tr>
+
+      <td><%= album.title %></td>
+      <td><%= album.description %></td>
+      <td><%= link_to "Show", {:action => 'show_album', :id => album.id } %></td>
+      <td><%= link_to "Edit", {:action => 'edit_album', :id => album.id }%></td>
+      <td><%= link_to "Destroy", album, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Album", 'new_album' %></p>
+

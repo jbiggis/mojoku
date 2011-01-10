@@ -1,0 +1,26 @@
+<% title "Album Image" %>
+
+<p>
+  <strong>Album:</strong>
+  <%= @album_image.album_id %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @album_image.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @album_image.description %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= image_tag @album_image.image.url %>
+</p>
+
+
+<p>
+  <%= link_to "Edit", edit_album_image_path(@album_image) %> |
+  <%= link_to "Destroy", @album_image, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", album_images_path %>
+</p>

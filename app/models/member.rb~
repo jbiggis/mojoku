@@ -10,8 +10,14 @@ class Member < ActiveRecord::Base
 has_one :model
 has_one :photographer
 has_one :modeling_agent
+has_many :albums
+has_many :album_images, :through => :albums
+
+has_attached_file :image
 
 accepts_nested_attributes_for :model
+accepts_nested_attributes_for :photographer
+accepts_nested_attributes_for :modeling_agent
 
 
 end

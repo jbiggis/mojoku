@@ -1,0 +1,19 @@
+<%= form_for @album, :url => 'edit_album' do |f| %>
+      
+
+<%= link_to 'Edit Album Info', 'edit_album'%>
+<%= link_to 'Add Photos', { :action => 'add_images', :id => @album.id }  %>
+
+	<%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+    </p>
+
+  <p><%= f.submit %></p>
+<% end %>

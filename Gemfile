@@ -10,6 +10,8 @@ gem "nifty-generators", :group => :development
 
 gem 'devise'
 
+gem 'paperclip'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

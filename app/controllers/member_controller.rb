@@ -140,6 +140,86 @@ redirect_to :action => 'profile'
   end
 
   def portfolio
+	@albums = Album.where('member_id == ?',current_member.id)
+
   end
+
+
+def new_album
+
+  @member = Member.find(current_member.id)
+
+  @album = @member.albums.build
+
+end
+
+  def create_album
+
+  @member = Member.find(current_member.id)
+
+    @album = @member.albums.build(params[:album])
+    if @album.save
+      flash[:notice] = "Successfully created album."
+      redirect_to @album
+    else
+      render :action => 'new_album'
+    end
+  end
+
+def edit_album
+
+  @album = Album.find(params[:id])
+
+
+
+end
+
+ def update_album
+
+  @member = Member.find(current_member.id)
+
+    @album = @member.albums.build(params[:album])
+    if @album.save
+      flash[:notice] = "Successfully created album."
+      redirect_to @album
+    else
+      render :action => 'new_album'
+    end
+  end
+
+ def add_images
+	 
+
+  @album = Album.find(params[:id])
+
+ 3.times{ @album.album_images.build}
+
+ end
+
+ def save_images
+  @album = Album.find(params[:id])
+if @album.update_attributes(params[:album])
+	paramss = params[:album][:album_images_attributes]
+
+	paramss.each do |param|
+
+	@album.album_images.create(param)
+	
+	end
+	flash[:notice] = "Successfully updated album."
+	redirect_to :action => 'show_album'
+else
+	render :action => 'add_images'
+
+end
+ end
+
+
+ def show_album
+
+@album_images = AlbumImage.where( 'album_id == ?', params[:id] )
+
+ end
+
 
 end

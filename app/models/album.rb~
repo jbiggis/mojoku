@@ -1,0 +1,8 @@
+class Album < ActiveRecord::Base
+  attr_accessible :member_id, :title, :description
+
+  has_many :album_images
+
+  accepts_nested_attributes_for :album_images
+
+end

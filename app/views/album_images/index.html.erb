@@ -1,0 +1,23 @@
+<% title "Album Images" %>
+
+<table>
+  <tr>
+    <th>Album</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image</th>
+  </tr>
+  <% for album_image in @album_images %>
+    <tr>
+      <td><%= album_image.album_id %></td>
+      <td><%= album_image.title %></td>
+      <td><%= album_image.description %></td>
+      <td><%= image_tag album_image.image.url%></td>
+      <td><%= link_to "Show", album_image %></td>
+      <td><%= link_to "Edit", edit_album_image_path(album_image) %></td>
+      <td><%= link_to "Destroy", album_image, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Album Image", new_album_image_path %></p>

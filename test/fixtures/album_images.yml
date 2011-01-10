@@ -1,0 +1,9 @@
+one:
+  album_id: 1
+  title: MyString
+  description: MyText
+
+two:
+  album_id: 1
+  title: MyString
+  description: MyText

@@ -1,0 +1,5 @@
+class Albums < ActiveRecord::Base
+  attr_accessible :user_id, :title, :description
+
+  has_many :album_images
+end
