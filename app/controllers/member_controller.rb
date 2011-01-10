@@ -189,29 +189,34 @@ end
 
  def add_images
 	 
+@tempalbumid = params[:id]
 
-  @album = Album.find(params[:id])
+  @album = Album.new
 
- 3.times{ @album.album_images.build}
+ 5.times{ @album.album_images.build}
 
  end
 
  def save_images
-  @album = Album.find(params[:id])
-if @album.update_attributes(params[:album])
-	paramss = params[:album][:album_images_attributes]
+ 	
+	 @album = Album.find(params[:id])
 
-	paramss.each do |param|
-
-	@album.album_images.create(param)
+	 attributes = params[:album][:album_images_attributes]
 	
-	end
-	flash[:notice] = "Successfully updated album."
-	redirect_to :action => 'show_album'
-else
-	render :action => 'add_images'
+	 attributes.each do |attribute|
 
-end
+		unless @album.album_images.create(attribute)
+		
+		flash.now[:notice] = "There was an error encountered."
+		render :action => 'add_images'
+
+		end
+	 end
+	
+	 flash[:notice] = "Successfully updated album."
+
+	 redirect_to :action => 'show_album', :id => params[:id]
+
  end
 
 

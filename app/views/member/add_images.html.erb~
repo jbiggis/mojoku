@@ -1,9 +1,10 @@
-<%= form_for @album, :url => {:action => 'save_images', :id => @album.id},  :html => {:multipart => true, :method => :post } do |f| %>
+<%= form_for @album, :url => {:action => 'save_images', :id => @album.id},  :html => {:multipart => true, :method => :put } do |f| %>
 
 
 
 	<%= f.fields_for :album_images do |builder| %>
-
+	       
+	
 
 	    <p>
 	    <%= builder.label :image, "Image File"%>

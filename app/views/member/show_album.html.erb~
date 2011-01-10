@@ -12,7 +12,7 @@
       <td><%= album_image.album_id %></td>
       <td><%= album_image.title %></td>
       <td><%= album_image.description %></td>
-      <td><%= image_tag (album_image.image.url) %></td>
+      <td><%= image_tag album_image.image.url %></td>
       <td><%= link_to "Show", album_image %></td>
       <td><%= link_to "Edit", edit_album_image_path(album_image) %></td>
       <td><%= link_to "Destroy", album_image, :confirm => 'Are you sure?', :method => :delete %></td>

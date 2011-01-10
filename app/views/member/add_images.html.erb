@@ -1,17 +1,17 @@
-<%= form_for @album, :url => {:action => 'save_images', :id => @album.id},  :html => {:multipart => true, :method => :post } do |f| %>
+<%= form_for @album, :url => {:action => 'save_images', :id => @tempalbumid},  :html => {:multipart => true, :method => :put } do |f| %>
 
 
 
 	<%= f.fields_for :album_images do |builder| %>
 	       
-	<% if builder.object.new_record? %>
+	
 
 	    <p>
 	    <%= builder.label :image, "Image File"%>
     <%= builder.file_field :image %><br />
     </p>
 
-	<% end %>
+
   	<% end %>
 
   <p><%= f.submit %></p>

@@ -4,7 +4,19 @@
 <%= link_to 'Edit Album Info', 'edit_album'%>
 <%= link_to 'Add Photos', { :action => 'add_images', :id => @album.id }  %>
 
-	<%= f.error_messages %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @album.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
 
   <p>
     <%= f.label :title %><br />

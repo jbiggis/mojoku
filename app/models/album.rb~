@@ -3,6 +3,6 @@ class Album < ActiveRecord::Base
 
   has_many :album_images
 
-  accepts_nested_attributes_for :album_images
+  accepts_nested_attributes_for :album_images, :reject_if => lambda { |t| t['album_image'].nil? }
 
 end
