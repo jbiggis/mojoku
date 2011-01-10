@@ -32,9 +32,13 @@ Mojoku::Application.routes.draw do
 
 get "member/show_album"
 
-  get "member/edit_album"
+  get "member/edit_album_info"
 
 get "member/add_images"
+
+get "member/edit_images"
+
+put "member/update_images"
 
 
 

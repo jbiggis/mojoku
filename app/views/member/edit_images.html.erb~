@@ -1,0 +1,28 @@
+<%= form_for @album, :url => {:action => 'edit_images', :id => @album.id},  :html => {:multipart => true, :method => :put } do |f| %>
+
+	<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @album.id }%>
+	<%= link_to 'Add Photos', { :action => 'add_images', :id => @album.id }  %>
+	<%= link_to 'Edit Photos', { :action => 'edit_images', :id => @album.id }  %>
+
+	<% n = 0%>
+
+	<%= f.fields_for :album_images do |builder| %>
+		
+ 
+		<div>
+	    		<%= builder.label :caption%>
+			<%= builder.text_area :caption, :size => '50x10' %>
+			<%= image_tag @album_images[n].image.url, :width =>'200'%>
+			<%= radio_button_tag :cover, "Make this the album cover"%>
+
+		</div>
+
+
+
+		<% n += 1%>
+	
+	<% end %>
+
+  	<p><%= f.submit %></p>
+
+<% end %>

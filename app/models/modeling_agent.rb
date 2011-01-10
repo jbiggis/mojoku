@@ -4,7 +4,7 @@ class ModelingAgent < ActiveRecord::Base
   
   attr_accessible :bio
 
-  validates :bio, :length => 200
+  #validates :bio, :length => 200
 
 
 end

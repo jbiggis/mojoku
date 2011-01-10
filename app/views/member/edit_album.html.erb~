@@ -1,8 +1,9 @@
 <%= form_for @album, :url => 'edit_album' do |f| %>
       
 
-<%= link_to 'Edit Album Info', 'edit_album'%>
-<%= link_to 'Add Photos', { :action => 'add_images', :id => @album.id }  %>
+	<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @album.id }%>
+<%= link_to 'Add Photos', { :action => 'add_images', :id => @album.id }  %
+
 
   <% if @album.errors.any? %>
     <div id="error_explanation">

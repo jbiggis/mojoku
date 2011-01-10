@@ -21,13 +21,13 @@
 
 	</div>
 	
-	<%= render 'shared/member_header' %>
+	<% render 'shared/member_header' %>
 	<%= render 'shared/member_navigation' %>	
 
 	<div id="content">	
  <% flash.each do |key, value| %>
 
-	  <div class="flash <%= key %>"><%= value %></div>
+	  <div class="notice"><%= notice %></div>
 
   <% end %>
 

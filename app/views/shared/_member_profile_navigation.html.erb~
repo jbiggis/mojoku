@@ -2,10 +2,11 @@
 
 	<ul>
 		<li>	<%= link_to "Profile Picture", "/member/edit_profile_pic" %></li>
-		<li>	<%= link_to "Account Information", "/members/edit" %></li>
+		<li>	<%= link_to "Email", "/member/edit_email" %></li>
+		<li>	<%= link_to "Password", "/member/edit_password" %></li>
 		<li>	<%= link_to "Personal Details", "/member/edit_personal_details" %></li>
 		<li>	<%= link_to "Contact Information", "/member/edit_contact_info" %></li>
-		<li>	<%= link_to "Role", "/member/edit_role" %></li>
+	
 	
 	</ul>
 

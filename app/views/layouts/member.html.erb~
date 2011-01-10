@@ -21,11 +21,9 @@
 
 	</div>
 
-	<div id = 'member-header' >
 
 		<%= render 'shared/member_header' %>
 
-	</div>
 
 	<%= render 'shared/member_navigation' %>
 	

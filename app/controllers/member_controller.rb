@@ -9,10 +9,6 @@ class MemberController < ApplicationController
  		@member = Member.find(current_member.id)
   end
 
-  def editprofile
-		redirect_to :action => 'edit_personal_details'
-  end
-
   def edit_profile_pic
 	  @member = Member.find(current_member.id)
      render :layout => "member_profile"
@@ -114,13 +110,13 @@ class MemberController < ApplicationController
     @album = @member.albums.build(params[:album])
     if @album.save
       flash[:notice] = "Successfully created album."
-      redirect_to @album
+      redirect_to :action => 'add_images', :id => @album.id
     else
       render :action => 'new_album'
     end
   end
 
-	def edit_album
+	def edit_album_info
 	  @album = Album.find(params[:id])
 	end
 
@@ -149,6 +145,7 @@ class MemberController < ApplicationController
 			unless @album.album_images.create(attribute)
 				flash.now[:notice] = "There was an error encountered."
 				render :action => 'add_images'
+				return
 			end
 		end
 	
@@ -158,6 +155,33 @@ class MemberController < ApplicationController
 
  	end
 
+	def edit_images
+		@album = Album.find(params[:id])
+		@album_images = AlbumImage.where("album_id == ?", params[:id])
+	end
+
+	def update_images
+		@album = Album.find(params[:id])
+		@album_images = AlbumImage.where("album_id == ?", params[:id])
+	
+		attributes = params[:album][:album_images_attributes]
+
+		n = 0
+
+		attributes.each do |attribute|
+
+			unless @album_images[n].update_attributes(attribute)
+				flash.now[:notice] = "There was an error encountered."
+ 				render :action => 'edit_images'
+				
+    	end
+			n += 1
+		end	
+			flash[:notice] = "Successfully updated album."
+      redirect_to :action => 'show_album', :id => params[:id]
+		
+
+	end
 
  def show_album
 		@album_images = AlbumImage.where( 'album_id == ?', params[:id] )

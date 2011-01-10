@@ -6,6 +6,5 @@ class Model < ActiveRecord::Base
 
   attr_accessible :height, :weight, :measurement_chest, :measurement_waist, :measurement_hip, :shoe_size, :bio
 
-  validates :bio, :length => 200
 
 end

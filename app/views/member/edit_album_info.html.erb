@@ -1,4 +1,11 @@
-<%= form_for @album, :url => 'create_album' do |f| %>
+<%= form_for @album, :url => 'edit_album' do |f| %>
+      
+
+<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @album.id }%>
+<%= link_to 'Add Images', { :action => 'add_images', :id => @album.id }  %>
+<%= link_to 'Edit Images', { :action => 'edit_images', :id => @album.id }  %>
+
+
   <% if @album.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
@@ -12,6 +19,7 @@
   <% end %>
 
 
+
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -19,6 +27,7 @@
   <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
-  </p>
+    </p>
+
   <p><%= f.submit %></p>
 <% end %>

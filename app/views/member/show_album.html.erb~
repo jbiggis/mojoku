@@ -2,7 +2,9 @@
 
 <table>
   <tr>
-
+    <th>Album</th>
+    <th>Title</th>
+    <th>Description</th>
     <th>Image</th>
     <th><%= link_to 'Add Images', { :action => 'add_images', :id => params[:id] }  %></th>
   </tr>
@@ -11,7 +13,9 @@
 
   <% for album_image in @album_images %>
     <tr>
-
+      <td><%= album_image.album_id %></td>
+      <td><%= album_image.title %></td>
+      <td><%= album_image.description %></td>
       <td><%= image_tag album_image.image.url %></td>
       <td><%= link_to "Show", album_image %></td>
       <td><%= link_to "Edit", edit_album_image_path(album_image) %></td>

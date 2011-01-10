@@ -2,7 +2,7 @@
 
 	<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @tempalbumid }%>
 	<%= link_to 'Add Photos', { :action => 'add_images', :id => @tempalbumid }  %>
-	<%= link_to 'Edit Photos', { :action => 'edit_images', :id => @tempalbumid }  %>
+	<%= link_to 'Edit Photos', { :action => 'edit_images', :id => @album.id }  %>
 
 	<%= f.fields_for :album_images do |builder| %>
 	       
