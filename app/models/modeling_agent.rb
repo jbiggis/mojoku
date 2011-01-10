@@ -1,3 +1,10 @@
 class ModelingAgent < ActiveRecord::Base
-  attr_accessible :user_id, :gender, :DOB, :bio, :contact_email, :facebook, :phone
+  
+  belongs_to :member
+  
+  attr_accessible :bio
+
+  validates :bio, :length => 200
+
+
 end

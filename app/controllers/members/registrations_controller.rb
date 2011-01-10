@@ -8,8 +8,10 @@ class Members::RegistrationsController < Devise::RegistrationsController
 		Member.transaction do
 			
 			if resource.save
-			  			
-				if resource.role == 'model'
+			  
+				if resource.role == 'individual'
+					###			
+				elsif resource.role == 'model'
 	    		unless resource.create_model
 			  		raise ActiveRecord::Rollback
 					end
@@ -41,8 +43,10 @@ class Members::RegistrationsController < Devise::RegistrationsController
 		end
 
   end
+
   def update
-    if resource.update_with_password(params[resource_name])
+    
+		if resource.update_with_password(params[resource_name])
       set_flash_message :notice, :updated
       sign_in resource_name, resource, :bypass => true
       redirect_to after_update_path_for(resource)

@@ -215,7 +215,7 @@ end
 	
 	 flash[:notice] = "Successfully updated album."
 
-	 redirect_to :action => 'show_album'
+	 redirect_to :action => 'show_album', :id => params[:id]
 
  end
 
