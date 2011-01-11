@@ -38,6 +38,8 @@ get "member/add_images"
 
 get "member/edit_images"
 
+put "member/update_images"
+
 
 
 put "member/save_images"

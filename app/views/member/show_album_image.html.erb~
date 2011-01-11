@@ -1,0 +1,15 @@
+<% title "Album Image" %>
+
+<p>
+  <strong>Description:</strong>
+  <%= image_tag @album_image.image.url %>
+</p>
+<p>
+  <%= @album_image.caption %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_album_image_path(@album_image) %> |
+  <%= link_to "Destroy", @album_image, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", album_images_path %>
+</p>

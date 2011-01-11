@@ -22,7 +22,7 @@
 	</div>
 
 
-		<%= render 'shared/member_header' %>
+		
 
 
 	<%= render 'shared/member_navigation' %>

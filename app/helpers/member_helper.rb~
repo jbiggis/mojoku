@@ -1,10 +1,5 @@
-module ApplicationHelper
+module MemberHelper
 
-def title(string)
-
-	return string
-
-end
 	def assign_cover
 
 		@album_images = AlbumImage.where("album_id == ?", params[:id])

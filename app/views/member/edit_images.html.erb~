@@ -1,4 +1,4 @@
-<%= form_for @album, :url => {:action => 'edit_images', :id => @album.id},  :html => {:multipart => true, :method => :put } do |f| %>
+<%= form_for @album, :url => {:action => 'update_images', :id => @album.id},  :html => {:multipart => true, :method => :put } do |f| %>
 
 	<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @album.id }%>
 	<%= link_to 'Add Photos', { :action => 'add_images', :id => @album.id }  %>
@@ -13,8 +13,11 @@
 	    		<%= builder.label :caption%>
 			<%= builder.text_area :caption, :size => '50x10' %>
 			<%= image_tag @album_images[n].image.url, :width =>'200'%>
-			<%= radio_button_tag :cover, "Make this the album cover"%>
-
+			<% if @album_image[n].cover?%>
+				<%= radio_button_tag 'cover', @album_images[n].id, :checked => true%>
+			<% else %>
+				<%= radio_button_tag 'cover', @album_images[n].id%>
+			<%end%>
 		</div>
 
 

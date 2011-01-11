@@ -32,6 +32,8 @@ Mojoku::Application.routes.draw do
 
 get "member/show_album"
 
+get "member/show_album_image"
+
   get "member/edit_album_info"
 
 get "member/add_images"

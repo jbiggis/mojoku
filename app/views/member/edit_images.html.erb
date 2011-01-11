@@ -13,8 +13,11 @@
 	    		<%= builder.label :caption%>
 			<%= builder.text_area :caption, :size => '50x10' %>
 			<%= image_tag @album_images[n].image.url, :width =>'200'%>
-			<%= radio_button_tag :cover, "Make this the album cover"%>
-
+			<% if @album_images[n].cover?%>
+				<%= radio_button_tag 'cover', @album_images[n].id, :checked => true%>
+			<% else %>
+				<%= radio_button_tag 'cover', @album_images[n].id%>
+			<%end%>
 		</div>
 
 

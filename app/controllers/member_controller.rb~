@@ -161,23 +161,33 @@ class MemberController < ApplicationController
 	end
 
 	def update_images
-		@album = Album.find(params[:id])
-		@album_images = AlbumImage.where("album_id == ?", params[:id])
-	
-		attributes = params[:album][:album_images_attributes]
+		#@album = Album.find(params[:id])
+		#@album_images = AlbumImage.where("album_id == ?", params[:id])
 
-		n = 0
+
+		## update album cover
+		@album_images = AlbumImage.where("album_id == ?", params[:id])
+		@album_images.each do |album_image|
+			album_image.update_attributes(:cover => false)
+		end
+
+		@album_image = AlbumImage.find(params[:cover])
+		@album_image.update_attributes(:cover => true)
+		## end update album cover
+		
+		attributes = params[:album][:album_images_attributes]
 
 		attributes.each do |attribute|
 
-			unless @album_images[n].update_attributes(attribute)
+			@album_image = AlbumImage.find(attribute[1][:id])
+			unless @album_image.update_attributes(attribute[1])
 				flash.now[:notice] = "There was an error encountered."
  				render :action => 'edit_images'
 				return
     	end
-			n += 1
+		
 		end	
-			flash[:notice] = "Successfully updated album."
+			#flash[:notice] = "Successfully updated album."
       redirect_to :action => 'show_album', :id => params[:id]
 		
 

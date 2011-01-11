@@ -2,7 +2,7 @@ module ApplicationHelper
 
 def title(string)
 
-	string
+	return string
 
 end
 end

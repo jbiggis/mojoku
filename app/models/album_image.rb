@@ -1,5 +1,5 @@
 class AlbumImage < ActiveRecord::Base
-  attr_accessible :album_id, :title, :description, :image
+  attr_accessible :album_id, :image, :caption, :cover
 
   validates :image_file_name, :presence => true
    belongs_to :album
