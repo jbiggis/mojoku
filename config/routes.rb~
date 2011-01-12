@@ -21,6 +21,18 @@ Mojoku::Application.routes.draw do
   get "member/edit_profile_pic"
   
   get "member/edit_email"
+
+  get "member/send_confirmation"
+
+ 
+
+  get "member/resend_confirmation"
+  
+  post "member/resend_confirmation"
+
+  get "member/cancel_confirmation_request"
+
+  post "member/cancel_confirmation_request"
   
   get "member/edit_password"
  
@@ -74,7 +86,7 @@ post "member/save_images"
 
   devise_for :admins
 
-  devise_for :members,  :controllers => { :registrations => "members/registrations" }
+  devise_for :members,  :controllers => { :registrations => "members/registrations", :sessions => "members/sessions" }
 
   resources :modeling_agents
 

@@ -48,8 +48,51 @@ class MemberController < ApplicationController
 
   def edit_email
   	@member = Member.find(current_member.id)
-    render :layout => "member_profile"
+    	render :layout => "member_profile"
   end
+
+  def send_confirmation
+
+
+	confirmation_token = rand(36**20).to_s(36) #generate token
+
+	unless current_member.create_email_confirmation(:email => params[:member][:email], :confirmation_token => confirmation_token, :confirmation_sent => Time.now, :action => "change")
+		 raise ActiveRecord::Rollback
+	end
+	
+	ConfirmationMailer.confirmation_email(params[:member][:email], confirmation_token).deliver
+	flash[:notice] = "A confirmation has been sent to your new email, Please check your junk folder if you don't see it in your inbox."
+redirect_to :action =>'edit_email'
+
+  end
+
+  def resend_confirmation
+
+
+	
+
+	if current_member.email_confirmation.update_attributes(:confirmation_sent => Time.now)
+		
+		ConfirmationMailer.confirmation_email(current_member.email_confirmation.email, current_member.email_confirmation.confirmation_token).deliver
+		flash[:notice] = "A confirmation has been sent to your email again, Please check your junk folder if you don't see it in your inbox."
+		redirect_to :action => 'edit_email'
+		return
+	else
+	
+		flash.now[:notice] = "There was an error"
+		render 'edit_email'
+	end
+
+end
+
+  def cancel_confirmation_request
+
+	current_member.email_confirmation.destroy
+	flash[:notice] = "Your email change request has been cancelled."
+	redirect_to :action =>'edit_email'
+  end
+
+
 
   def edit_password
 	   @member = Member.find(current_member.id)

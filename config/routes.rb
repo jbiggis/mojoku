@@ -21,6 +21,16 @@ Mojoku::Application.routes.draw do
   get "member/edit_profile_pic"
   
   get "member/edit_email"
+
+  post "member/send_confirmation"
+
+  get "member/resend_confirmation"
+  
+  post "member/resend_confirmation"
+
+  get "member/cancel_confirmation_request"
+
+  post "member/cancel_confirmation_request"
   
   get "member/edit_password"
  

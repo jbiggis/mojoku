@@ -30,6 +30,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
 					end
 				end
 			
+				#send_confirmation_email is a Class Method in Member.rb
 				resource.send_confirmation_email(resource.id, resource.email)
 				return
 				#redirect_to :controller => 'email_confirmations', :action => 'create'			# redirect_to "we have send you an email confirmation. You have to confirm it before you can sign in"

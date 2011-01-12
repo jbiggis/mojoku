@@ -32,17 +32,17 @@ accepts_nested_attributes_for :modeling_agent
 
 def send_confirmation_email(id, email)
 
+	
 		@member = Member.find(id)
 		
 		confirmation_token = rand(36**20).to_s(36)
-
-		#confirmation_token = @member.generate_token
-	 	#if success: run email function to send email (pass in resource.email and confirmation token
-		ConfirmationMailer.confirmation_email(email, confirmation_token).deliver
+		
 		unless @member.create_email_confirmation(:email => email, :confirmation_token => confirmation_token, :confirmation_sent => Time.now, :action => "new")
 		 raise ActiveRecord::Rollback
 		 end
-		# end
+		
+		ConfirmationMailer.confirmation_email(email, confirmation_token).deliver
+		
 
 end
 

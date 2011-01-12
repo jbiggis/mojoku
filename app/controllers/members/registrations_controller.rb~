@@ -30,7 +30,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
 					end
 				end
 			
-				resource.send_confirmation_email(id, email)
+				resource.send_confirmation_email(resource.id, resource.email)
 				return
 				#redirect_to :controller => 'email_confirmations', :action => 'create'			# redirect_to "we have send you an email confirmation. You have to confirm it before you can sign in"
 

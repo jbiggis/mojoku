@@ -31,7 +31,7 @@ class EmailConfirmationsController < ApplicationController
 		
 		elsif email_confirmation.action == 'change'
 
-			unless Member.update(email_confirmation.member_id,:email => email)
+			unless Member.update(email_confirmation.member_id,:email => email_confirmation.email)
 				raise ActiveRecord::Rollback
 			end	
 			flash[:notice] = 'Your new email has been confirmed. Please use this email to sign in from now on.'
