@@ -14,46 +14,7 @@ class EmailConfirmationsController < ApplicationController
 	@member.send_confirmation_email(id, email)
   end
 
-  def resend_new
-	member = Member.find_by_email(params[:email])
-	if member
-		if member.status == 3
-			email_confirmation.destroy
-			member.send_confirmation_email(member.id, email)
-		elsif member.status == 2 or member.status == 1
-			render 'new'
-			flash.now[:notice] = "This email has already been confirmed."
-		end
-	else
-		render 'new'
-		flash.now[:notice] = "This email has not been registered"
-	end
-  
-  end
-
-  def recreate 
-	member = Member.find_by_email(params[:email])
-	email_confirmation = EmailConfirmation.find_by_email(parmas[:email])
-	if member
-	
-		if email_confirmation
-			email_confirmation.destroy
-			member.send_confirmation_email(member.id, email)
-		
-		else
-			flash.now[:notice] = "This email has already been confirmed."
-			render 'new'
-		
-		end
-	else
-		
-		 @me
-			@member.send_confirmation_email(id, email)
-  			flash.now[:notice] = "This email has not been registered"
-	end
-
-  end
-
+ 
   def verify
 	email_confirmation = EmailConfirmation.find(:first, :conditions => {:email => params[:email], :confirmation_token => params[:confirmation_token]})
 
@@ -61,7 +22,7 @@ class EmailConfirmationsController < ApplicationController
 
 
 		if email_confirmation.action == 'new'
-		        unless Member.update(email_confirmation.member_id, :status => 4)
+		        unless Member.update(email_confirmation.member_id, :status => 2)
 				raise ActiveRecord::Rollback
 			end	
 			flash[:notice] = 'Your email has been confirmed. You can now sign in.'

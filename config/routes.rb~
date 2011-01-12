@@ -3,6 +3,8 @@ Mojoku::Application.routes.draw do
 
   get "email_confirmations/verify"
 
+  get "email_confirmations/new"
+
   get "relationships/create"
 
 
@@ -72,7 +74,7 @@ post "member/save_images"
 
   devise_for :admins
 
-  devise_for :members,  :controllers => { :registrations => "members/registrations", :sessions => "members/sessions" }
+  devise_for :members,  :controllers => { :registrations => "members/registrations" }
 
   resources :modeling_agents
 

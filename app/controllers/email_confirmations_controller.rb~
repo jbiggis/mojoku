@@ -55,18 +55,13 @@ class EmailConfirmationsController < ApplicationController
   end
 
   def verify
+	email_confirmation = EmailConfirmation.find(:first, :conditions => {:email => params[:email], :confirmation_token => params[:confirmation_token]})
 
-	#email_confirmation = EmailConfirmation.where('email == ? AND confirmation_token == ?',params[:email], params[:confirmation_token] )
-#email_confirmation = EmailConfirmation.find(8)
-email_confirmation = EmailConfirmation.find(:first, :conditions => {:email => params[:email], :confirmation_token => params[:confirmation_token]})
-	#	flash[:notice] = email_confirmation.member_id.inspect
-	#	redirect_to(new_member_registration_path)
-	#	return
   	if email_confirmation
 
 
 		if email_confirmation.action == 'new'
-		        unless Member.update(email_confirmation.member_id, :status => 4)
+		        unless Member.update(email_confirmation.member_id, :status => 2)
 				raise ActiveRecord::Rollback
 			end	
 			flash[:notice] = 'Your email has been confirmed. You can now sign in.'
