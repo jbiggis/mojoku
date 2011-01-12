@@ -19,9 +19,9 @@
 	  
 	  <p>A confirmation email has already been sent to <%= @member.email_confirmation.email %>. Please check the email and click on the confirmation link within to complete the email change.</p>
 	  
-	  <%= link_to 'Resend Confirmation', 'resend_confirmation' %>
+	  <%= button_to 'Resend Confirmation Email', 'resend_confirmation' %>
 	  
-	  <%= button_to 'Cancel Request', :action => 'cancel_confirmation_request' %>
+	  <%= button_to 'Cancel Request', 'cancel_confirmation_request' %>
 
   <%else %>
 
@@ -30,7 +30,7 @@
 		  
 		  <p>
 		  <%= f.label :email, "Change to:" %><br />
-		  <%= f.text_field :email %>
+		  <%= f.text_field :email, :value =>""  %>
 		  </p>
 	  
 		  <p><%= f.submit "Request Change" %></p>
