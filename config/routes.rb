@@ -1,4 +1,13 @@
 Mojoku::Application.routes.draw do
+  get "email_confirmations/create"
+
+  get "email_confirmations/verify"
+
+  get "email_confirmations/new"
+
+  get "relationships/create"
+
+
   resources :album_images
 
   resources :albums
@@ -42,19 +51,30 @@ get "member/edit_images"
 
 put "member/update_images"
 
-
-
 put "member/save_images"
 post "member/save_images"
 
  post "member/create_album"
 
+ put 'member/update_profile_pic'
+
+ get 'member/show_relationships'
 
   get "public/home"
 
+  get "public/list_members"
+
+  get "public/member_home"
+  
+  get "public/member_profile"
+  
+  get "public/member_portfolio"
+
+
+
   devise_for :admins
 
-  devise_for :members,  :controllers => { :registrations => "members/registrations" }
+  devise_for :members,  :controllers => { :registrations => "members/registrations", :sessions => "members/sessions" }
 
   resources :modeling_agents
 

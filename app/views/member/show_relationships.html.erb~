@@ -1,0 +1,35 @@
+<% title "Album" %>
+
+<table>
+	
+	  <th>Members you are following:</th>
+	<tr>
+
+  <% @followings.each do |following| %>
+    
+
+    
+      <% member = Member.find(following.member_id) %>
+      <td><%= member.email %></td>
+      
+    
+
+  <% end %>
+  </tr>
+  <th>Members following you:</th>
+  <tr>
+    <% @followers.each do |follower| %>
+    
+
+      <% member = Member.find(follower.follower_id) %>
+      <td><%= member.email  %></td>
+
+
+  <% end %>
+</tr>
+</table>
+      Member.find(follower.follower_id) || @member.find(follower.follower_id)
+      @member.profile_pic.photo.url
+
+      pic = Profile_pic.where('member_id == ?', follower.follower_id)
+      image_tag pic.photo.url

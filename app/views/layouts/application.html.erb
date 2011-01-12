@@ -18,13 +18,15 @@
 	<div id='nav'>
 	
 	      
-		<%= render 'shared/navigation' %>
+		<%= render 'shared/account_nav' %>
 
 	
 	</div>
-
-      
-	<div id="content">
+	<div >
+      		<%= render 'shared/site_nav' %>
+		<class="notice"><%=notice%>
+	</div>
+		<div id="content">
 
       
 		<%= yield %>

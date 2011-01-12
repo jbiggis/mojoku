@@ -17,11 +17,11 @@
       
 	<div id='nav'>
 
-		<%= render 'shared/navigation' %>
+		<%= render 'shared/account_nav' %>
 
 	</div>
 	
-	<% render 'shared/member_header' %>
+
 	<%= render 'shared/member_navigation' %>	
 
 	<div id="content">	

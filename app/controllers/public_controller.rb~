@@ -1,0 +1,9 @@
+class PublicController < ApplicationController
+  def home
+  end
+
+  def list_members
+	@members = Member.all
+  end
+
+end

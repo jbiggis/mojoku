@@ -1,0 +1,6 @@
+class Relationship < ActiveRecord::Base
+
+	
+validates :follower_id, :uniqueness => {:scope => :member_id},:message => "extension %s is not allowed"
+
+end

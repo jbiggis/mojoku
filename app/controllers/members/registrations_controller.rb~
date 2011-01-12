@@ -4,41 +4,51 @@ class Members::RegistrationsController < Devise::RegistrationsController
   def create
   	
 		build_resource
-	  
+	  	resource.status = 3  ## set status to 'unconfirmed'
+#		flash[:notice] = resource.inspect
+#		redirect_to(new_member_registration_path)
+#		return
+		
 		Member.transaction do
 			
 			if resource.save
-			  
-				if resource.role == 'inidividual'
+				
+				if resource.role == 'individual'
 					###			
 				elsif resource.role == 'model'
-	    		unless resource.create_model
-			  		raise ActiveRecord::Rollback
+	    				
+					unless resource.create_model
+			  			raise ActiveRecord::Rollback
 					end
 				elsif resource.role == 'photographer'
-	    	 	unless resource.create_photographer
+	    	 			unless resource.create_photographer
 						raise ActiveRecord::Rollback
 					end
-	    	elsif resource.role == 'modeling_agent'
-	    		unless resource.create_modeling_agent
+	    			elsif resource.role == 'modeling_agent'
+	    				unless resource.create_modeling_agent
 						raise ActiveRecord::Rollback
 					end
 				end
+			
+				resource.send_confirmation_email(id, email)
+				return
+				#redirect_to :controller => 'email_confirmations', :action => 'create'			# redirect_to "we have send you an email confirmation. You have to confirm it before you can sign in"
 
-      	if resource.active?
-        	set_flash_message :notice, :signed_up
-        	sign_in_and_redirect(resource_name, resource)
-					return
-      	else
-        	set_flash_message :notice, :inactive_signed_up, :reason => resource.inactive_message.to_s
-        	expire_session_data_after_sign_in!
-        	redirect_to after_inactive_sign_up_path_for(resource)
-      	end
+
+  #    	if resource.active?
+   #     	set_flash_message :notice, :signed_up
+    #    	sign_in_and_redirect(resource_name, resource)
+#					return
+ #     	else
+  #      	set_flash_message :notice, :inactive_signed_up, :reason => resource.inactive_message.to_s
+   #     	expire_session_data_after_sign_in!
+    #    	redirect_to after_inactive_sign_up_path_for(resource)
+     # 	end
     
 		 	end
   
 		clean_up_passwords(resource)
-  	render_with_scope :new
+  		render_with_scope :new
    	
 		end
 

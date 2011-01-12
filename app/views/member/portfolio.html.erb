@@ -7,19 +7,17 @@
     <th>Title</th>
   </tr>
   <% for album in @albums %>
-    <tr>
-	<% album.album_images.each do |album_image|%>	    
-		<% if album_image.cover? %>
-			<% image = image_tag album_image.image.url, :width=> '200'%>
-			<td><%= link_to image, {:action => 'show_album_image', :id => album_image.id} %></td>
-		<%end%>
-	<%end%>
-      <td><%= album.title %></td>
-      <td><%= album.description %></td>
-      <td><%= link_to "Show", {:action => 'show_album', :id => album.id } %></td>
-      <td><%= link_to "Edit", {:action => 'edit_album_info', :id => album.id }%></td>
-      <td><%= link_to "Destroy", album, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+		<div>
+			<tr>
+				<% image = image_tag AlbumImage.find(album.cover_id).image.url, :width=> '200'%>
+				<td><%= link_to image, {:action => 'show_album_image', :id => album.cover_id} %></td>
+				<td><%= album.title %></td>
+				<td><%= album.description %></td>
+				<td><%= link_to "Show", {:action => 'show_album', :id => album.id } %></td>
+				<td><%= link_to "Edit", {:action => 'edit_album_info', :id => album.id }%></td>
+				<td><%= link_to "Destroy", album, :confirm => 'Are you sure?', :method => :delete %></td>
+			</tr>
+		</div>
   <% end %>
 </table>
 

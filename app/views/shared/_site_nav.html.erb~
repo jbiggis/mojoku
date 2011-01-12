@@ -1,0 +1,5 @@
+<div id="site-nav" class="round">  
+
+	<%= link_to "Members", '/public/home'%>
+	<%= link_to "Members", '/public/list_members'%>
+    </div>  

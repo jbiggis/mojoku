@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  member_id: 1
+  email: MyString
+  confirmation_token: MyString
+  confirmation_sent: 2011-01-12 11:15:22
+
+two:
+  member_id: 1
+  email: MyString
+  confirmation_token: MyString
+  confirmation_sent: 2011-01-12 11:15:22

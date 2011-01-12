@@ -1,0 +1,8 @@
+<html>
+	<body>
+
+
+		<%=  link_to "Click here to confirm your email", 'http://localhost:3000/email_confirmations/verify?'+'email='+@email+'confirmation_token='+@confirmation_token %>	
+</body>
+</html>
+

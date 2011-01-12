@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111041310) do
+ActiveRecord::Schema.define(:version => 20110112074257) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -53,6 +53,22 @@ ActiveRecord::Schema.define(:version => 20110111041310) do
     t.integer  "cover_id"
   end
 
+  create_table "email_confirmations", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "email"
+    t.string   "confirmation_token"
+    t.datetime "confirmation_sent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "action"
+  end
+
+  create_table "member_statuses", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "members", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
@@ -76,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20110111041310) do
     t.string   "twitter"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "status"
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true
@@ -108,9 +125,19 @@ ActiveRecord::Schema.define(:version => 20110111041310) do
     t.datetime "updated_at"
   end
 
+  create_table "profile_pics", :force => true do |t|
+    t.integer  "member_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "relationships", :id => false, :force => true do |t|
+    t.integer  "member_id"
     t.integer  "follower_id"
-    t.integer  "following_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

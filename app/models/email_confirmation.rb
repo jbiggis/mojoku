@@ -1,0 +1,23 @@
+class EmailConfirmation < ActiveRecord::Base
+
+	belongs_to :member
+
+	def send_confirmation_email(id, email)
+		@member = Member.find(id)
+		confirmation_token = @member.generate_token
+#		flash[:notice] = @member.inspect
+#		redirect_to(new_member_registration_path)
+#		return
+		#if success: run email function to send email (pass in resource.email and confirmation token
+		ConfirmationMailer.confirmation_email(email, confirmation_token).deliver
+		unless @member.create_email_confirmation(:email => email, :confirmation_token => confirmation_token, :confirmation_sent => Time.now, :action => "new")
+		 raise ActiveRecord::Rollback
+		 end
+		# end
+	end
+
+	def generate_token
+		rand(36**20).to_s(36)
+	end
+
+end

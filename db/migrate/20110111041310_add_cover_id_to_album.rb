@@ -1,6 +1,6 @@
 class AddCoverIdToAlbum < ActiveRecord::Migration
   def self.up
-    add_column :albums, :cover_id, :integer
+    add_column :albums, :cover_id, :integer, :default => 0
   end
 
   def self.down

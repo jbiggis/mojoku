@@ -1,0 +1,11 @@
+<h2>Resend Email Confirmation</h2>
+
+
+  <p><%= label_tag 'email' %><br />
+  <%= text_field_tag 'email' %></p>
+
+  <p><%= submit_tag "Resend Email Confirmation" %></p>
+
+
+
+

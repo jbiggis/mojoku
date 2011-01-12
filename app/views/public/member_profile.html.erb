@@ -1,0 +1,75 @@
+<h1>My Profile</h1>
+
+<% if @member == current_member %>
+<%= link_to "Edit Profile", '/member/edit_personal_details' %>
+<% end %>
+<p>
+  <strong>Gender:</strong>
+  <%= @member.gender %>
+</p>
+<p>
+  <strong>Dob:</strong>
+  <%= @member.DOB %>
+  </p>
+<p>
+  <strong>Facebook:</strong>
+  <%= @member.facebook %>
+  </p>
+
+<p>
+  <strong>Twitter:</strong>
+  <%= @member.twitter %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @member.phone %>
+</p>
+
+
+<% if @member.role == 'model' %>
+
+<p>
+  <strong>Height:</strong>
+  <%= @member.model.height %>
+</p>
+<p>
+  <strong>Weight:</strong>
+  <%= @member.model.weight %>
+</p>
+<p>
+  <strong>Measurement Chest:</strong>
+  <%= @member.model.measurement_chest %>
+</p>
+<p>
+  <strong>Measurement Waist:</strong>
+  <%= @member.model.measurement_waist %>
+</p>
+<p>
+  <strong>Measurement Hip:</strong>
+  <%= @member.model.measurement_hip %>
+</p>
+<p>
+  <strong>Shoe Size:</strong>
+  <%= @member.model.shoe_size %>
+</p>
+<p>
+  <strong>Bio:</strong>
+  <%= @member.model.bio %>
+</p>
+
+
+
+ <% elsif @member.role == 'photographer' %>
+<p>
+  <strong>Bio:</strong>
+  <%= @member.photographer.bio %>
+</p>
+
+ <% elsif @member.role == 'modeling_agent' %>
+<p>
+  <strong>Bio:</strong>
+  <%= @member.modeling_agent.bio %>
+</p>
+ <% end %>
+

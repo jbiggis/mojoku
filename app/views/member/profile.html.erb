@@ -1,6 +1,10 @@
 <h1>My Profile</h1>
 <%= link_to "Edit Profile", '/member/edit_personal_details' %>
 
+<% if @member.profile_pic%>
+<%= image_tag @member.profile_pic.photo.url %>
+<%end%>
+
 <p>
   <strong>Gender:</strong>
   <%= @member.gender %>

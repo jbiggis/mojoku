@@ -17,16 +17,16 @@
       
 	<div id='nav'>
 
-		<%= render 'shared/navigation' %>
+		<%= render 'shared/account_nav' %>
 
 	</div>
-
+		<%= render 'shared/account_nav' %>
 
 		
 
 
 	<%= render 'shared/member_navigation' %>
-	
+ <div class="notice"><%= notice %></div>	
 	<div id="content">
 
 		<div id="content-left">

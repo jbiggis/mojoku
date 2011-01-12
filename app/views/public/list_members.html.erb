@@ -1,0 +1,7 @@
+<h1>Members</h1>
+<p><% @members.each do |member|%></p>
+
+	<%= member.email%>
+	<%= link_to 'Profile', {:controller => 'public', :action => 'member_profile', :id => member.id} %>
+	<%= link_to 'Follow', {:controller => 'relationships', :action => 'create', :id => member.id}%>
+<% end %>
