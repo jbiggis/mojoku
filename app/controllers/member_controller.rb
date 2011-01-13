@@ -195,16 +195,17 @@ end
 	  @album = Album.find(params[:id])
 	end
 
- 	def update_album
-	  @member = Member.find(current_member.id)
-    @album = @member.albums.build(params[:album])
-    if @album.save
-      flash[:notice] = "Successfully created album."
-      redirect_to @album
+ 	def update_album_info
+    @album = Album.find(params[:id])
+    if @album.update_attributes(params[:album])
+#	    @album.album_images.create(params[:album][:album_images])
+      flash[:notice] = "Successfully updated album."
+      redirect_to :action => 'show_album', :id => params[:id]
     else
-      render :action => 'new_album'
+      render :action => 'edit'
     end
   end
+
 
   def add_images
 		@tempalbumid = params[:id]
@@ -279,7 +280,7 @@ end
 				@album.cover_id = params[:cover]
 				unless @album.save 
 					raise ActiveRecord::Rollback
-					flash[:error]="Cannot chance cover image!"
+					flash[:error]="Cannot change cover image!"
 				end
 			end
 		end
@@ -304,7 +305,8 @@ end
 	end
 
  def show_album
-		@album_images = AlbumImage.where( 'album_id == ?', params[:id] )
+@album = Album.find(params[:id])	
+ 	 @album_images = AlbumImage.where( 'album_id == ?', params[:id] )
  end
 
  def show_album_image

@@ -1,11 +1,8 @@
-<%= form_for @album, :url => 'edit_album' do |f| %>
+<%= form_for @album, :url => {:action => 'update_album_info', :id => @album.id}, :html => {:method => :put }  do |f| %>
       
 
-<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @album.id }%>
-<%= link_to 'Add Images', { :action => 'add_images', :id => @album.id }  %>
-<%= link_to 'Edit Images', { :action => 'edit_images', :id => @album.id }  %>
-
-
+	<%= render "shared/portfolio_nav" %>
+	
   <% if @album.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
@@ -19,7 +16,6 @@
   <% end %>
 
 
-
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -31,3 +27,4 @@
 
   <p><%= f.submit %></p>
 <% end %>
+

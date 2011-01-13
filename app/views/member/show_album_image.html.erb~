@@ -1,7 +1,7 @@
 <% title "Album Image" %>
 
 <p>
-  <strong>Description:</strong>
+
   <%= image_tag @album_image.image.url %>
 </p>
 <p>

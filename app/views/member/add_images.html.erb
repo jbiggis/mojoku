@@ -1,5 +1,7 @@
 <%= form_for @album, :url => {:action => 'save_images', :id => @tempalbumid},  :html => {:multipart => true, :method => :put } do |f| %>
 
+	
+	<%= link_to 'Back To Album', { :action => 'show_album', :id => @tempalbumid } %>
 	<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @tempalbumid }%>
 	<%= link_to 'Add Photos', { :action => 'add_images', :id => @tempalbumid }  %>
 	<%= link_to 'Edit Photos', { :action => 'edit_images', :id => @tempalbumid }  %>

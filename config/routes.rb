@@ -55,6 +55,8 @@ get "member/show_album_image"
 
   get "member/edit_album_info"
 
+  match "member/update_album_info"
+
 get "member/add_images"
 
 get "member/edit_images"
@@ -86,6 +88,12 @@ post "member/save_images"
 
   devise_for :members,  :controllers => { :registrations => "members/registrations", :sessions => "members/sessions" }
 
+  #get "/members/resend_confirmation" , :controller => :sessions, :action => 'resend_confirmation'
+
+  match "/members/registered" => 'members/registrations#show'
+  match "/members/resend_confirmation" => 'members/sessions#resend_confirmation'
+  #:controller => :registrations, :action => 'registered'
+  match 'email_confirmations/resend_first_confirmation'
   resources :modeling_agents
 
   resources :photographers

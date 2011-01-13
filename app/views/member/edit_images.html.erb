@@ -1,8 +1,6 @@
 <%= form_for @album, :url => {:action => 'update_images', :id => @album.id},  :html => {:multipart => true, :method => :put } do |f| %>
 
-	<%= link_to 'Edit Album Info', { :action => 'edit_album_info', :id => @album.id }%>
-	<%= link_to 'Add Photos', { :action => 'add_images', :id => @album.id }  %>
-	<%= link_to 'Edit Photos', { :action => 'edit_images', :id => @album.id }  %>
+	<%= render "shared/portfolio_nav" %>
 
 	<% n = 0%>
 
@@ -29,3 +27,4 @@
   	<p><%= f.submit %></p>
 
 <% end %>
+

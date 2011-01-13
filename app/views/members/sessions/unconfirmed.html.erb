@@ -1,0 +1,9 @@
+<h2>Please confirm your email</h2>
+
+<p>This email account has not yet been confirmed.  Please click on the confirmation link in the email to confirm your account in order to sign in.</p>
+
+<%= button_to 'Sign in', new_member_session_path %>
+<%= params[:member][:email].inspect%>
+<%= button_to 'Resend Email Confirmation', {:controller => '/email_confirmations', :action => 'resend_first_confirmation', :email => params[:member][:email]} %>
+
+

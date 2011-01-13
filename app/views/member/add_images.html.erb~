@@ -16,5 +16,5 @@
 
   	<% end %>
 
-  <p><%= f.submit, "Add Photos" %></p>
+  <p><%= f.submit "Add Photos" %></p>
 <% end %>

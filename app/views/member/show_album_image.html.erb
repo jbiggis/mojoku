@@ -9,7 +9,9 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_album_image_path(@album_image) %> |
-  <%= link_to "Destroy", @album_image, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", album_images_path %>
+	<%= link_to 'Back To Album', { :action => 'show_album', :id => @album_image.album_id } %>
+  <%#= link_to "Edit", edit_album_image_path(@album_image) %> 
+  <%#= link_to "Destroy", @album_image, :confirm => 'Are you sure?', :method => :delete %> 
+  <%#= link_to "View All", album_images_path %>
 </p>
+

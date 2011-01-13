@@ -47,5 +47,23 @@ class EmailConfirmationsController < ApplicationController
 	end
 
   end
+  def resend_first_confirmation
 
+	if email_confirmation = EmailConfirmation.find_by_email(params[:email])
+		if email_confirmation.update_attributes(:confirmation_sent => Time.now)
+			
+			#ConfirmationMailer.confirmation_email(email_confirmation.email, email_confirmation.confirmation_token).deliver
+			flash[:notice] = "A confirmation has been resent to your email, Please check your junk folder if you don't see it in your inbox."
+			redirect_to(root_path)
+			return
+		else
+		
+			flash.now[:notice] = "There was an error"
+			redirect_to(root_path)
+		end
+	else
+		flash[:notice] = "You're caught, hacker!"
+		redirect_to(root_path)
+	end
+  end
 end

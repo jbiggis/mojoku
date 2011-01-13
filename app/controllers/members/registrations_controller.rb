@@ -31,8 +31,11 @@ class Members::RegistrationsController < Devise::RegistrationsController
 				end
 			
 				#send_confirmation_email is a Class Method in Member.rb
-				resource.send_confirmation_email(resource.id, resource.email)
+				#resource.send_confirmation_email(resource.id, resource.email)
+				render 'registered'
 				return
+
+
 				#redirect_to :controller => 'email_confirmations', :action => 'create'			# redirect_to "we have send you an email confirmation. You have to confirm it before you can sign in"
 
 
@@ -57,7 +60,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
   def update
     
-		if resource.update_with_password(params[resource_name])
+    if resource.update_with_password(params[resource_name])
       set_flash_message :notice, :updated
       sign_in resource_name, resource, :bypass => true
       redirect_to after_update_path_for(resource)
@@ -67,6 +70,28 @@ class Members::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+
+  def registered
+	
+  end
+
+  def resend_first_confirmation
+	
+	
+
+	if current_member.email_confirmation.update_attributes(:confirmation_sent => Time.now)
+		
+		ConfirmationMailer.confirmation_email(current_member.email_confirmation.email, current_member.email_confirmation.confirmation_token).deliver
+		flash[:notice] = "A confirmation has been sent to your email again, Please check your junk folder if you don't see it in your inbox."
+		redirect_to :action => 'edit_email'
+		return
+	else
+	
+		flash.now[:notice] = "There was an error"
+		render 'edit_email'
+	end
+
+end
 
 end
 
