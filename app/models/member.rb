@@ -13,10 +13,12 @@ has_one :modeling_agent, :dependent => :destroy
 has_many :albums, :dependent => :destroy
 has_many :album_images, :through => :albums
 
-has_one :profile_pic, :dependent => :destroy
+has_many :profile_pics, :dependent => :destroy
+has_many :verification_pics, :dependent => :destroy
 has_one :email_confirmation, :dependent => :destroy
 
-has_many :relationships
+has_many :relationships, :dependent => :destroy
+has_many :collections, :dependent => :destroy
 
 
 validates :first_name, :presence => true

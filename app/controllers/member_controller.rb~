@@ -13,9 +13,9 @@ class MemberController < ApplicationController
 
   def edit_profile_pic
 	  @member = Member.find(current_member.id)
-
-		if @member.profile_pic.nil?
-			@member.build_profile_pic
+	@profile_pics = @member.profile_pics
+		if @profile_pics.empty?
+			@member.build_profile_pics
 		end
      render :layout => "member_profile"
   end
@@ -24,20 +24,24 @@ class MemberController < ApplicationController
 
 	@member = Member.find(current_member.id)
 
-	if @member.profile_pic
+#	if @member.profile_pics
 
-		unless @member.profile_pic.update_attributes(params[:member][:profile_pic])
+#		unless @member.profile_pics.update_attributes(params[:member][:profile_pic], :status => 1)
+#			flash.now[:notice] = "There was an error encountered."
+#			render :action => 'edit_profile_pic'
+#			return
+#		end
+#	else
+		unless @member.profile_pics.create(params[:member][:profile_pic])
 			flash.now[:notice] = "There was an error encountered."
 			render :action => 'edit_profile_pic'
 			return
 		end
-	else
-		unless @member.create_profile_pic(params[:member][:profile_pic])
-			flash.now[:notice] = "There was an error encountered."
-			render :action => 'edit_profile_pic'
-			return
+		if pic = @member.profile_pics.find(:first, :conditions => 'status = 3')
+			pic.update_attributes(:status => 5)
+
 		end
-	end
+			#	end
 	
        	flash[:notice] = "Successfully updated profile picture."
 
@@ -45,6 +49,23 @@ class MemberController < ApplicationController
 
 	end
 
+	  def cancel
+	current_member.profile_pics.find(:first, :conditions => 'status = 1').update_attributes(:status => 5)
+	redirect_to(member_edit_profile_pic_path)
+  end
+
+
+	def delete_profile_pic
+	
+		if profile_pic = current_member.profile_pics.count == 1
+			profile_pic.destroy
+		else
+			current_pic = current_member.profile_pics.find('status=?', 2)
+			current_pic.destroy
+		
+
+		end
+	end
 
   def edit_email
   	@member = Member.find(current_member.id)
@@ -305,7 +326,8 @@ end
 	end
 
  def show_album
-		@album_images = AlbumImage.where( 'album_id == ?', params[:id] )
+@album = Album.find(params[:id])	
+ 	 @album_images = AlbumImage.where( 'album_id == ?', params[:id] )
  end
 
  def show_album_image
@@ -313,7 +335,7 @@ end
  end
 
  def show_relationships
-	 @members = Member.all
+
 	 @followers = Relationship.where('member_id == ?', current_member.id)
 
 	 @followings = Relationship.where('follower_id == ?', current_member.id)

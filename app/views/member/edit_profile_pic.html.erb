@@ -12,13 +12,47 @@
       </ul>
     </div>
   <% end %>
-  <%= image_tag @member.profile_pic.photo.url%>
+
+<% if @profile_pics.count == 1 && @profile_pics[0].status == '1' %>
+	<%= image_tag @profile_pics[0].photo.url %>
+<% elsif @profile_pics.count > 1 %>
+	<% pic = @profile_pics.find(:last, :conditions => 'status = 2') %>
+	<%= image_tag pic.photo.url %>
+<%end%>
+
   <%= f.fields_for :profile_pic do |builder| %>
-  <p>
-    <%= builder.label :photo, 'Profile Picture' %>
-    <%= builder.file_field :photo %>
-  </p>
+
+
+	  <% if @profile_pics.empty?  %>
+		  <%= builder.label :photo, 'Upload a Profile Picture' %>
+		    <%= builder.file_field :photo %>
+	  <% else %>
+
+  <% if pic = @profile_pics.find(:first, :conditions => 'status = 1') %>
+	  <p>Awaiting Confirmation:</p>
+	  <%= image_tag pic.photo.url%>
+	  <p>Once this photo has been verified, it will automatically replace your current profile photo. </p>
+	  <%= link_to 'Cancel Verification Request', cancel_verification_path %>
+  <% elsif pic = @profile_pics.find(:last,:conditions => 'status = 3')%>
+		  <p> Your previous uploaded photo is invalid, please upload another one.</p>
+		<%= image_tag pic.photo.url%>
+	    <%= builder.label :photo, 'Change Photo' %>
+  <%= builder.file_field :photo %>
+<% else %>
+    <%= builder.label :photo, 'Change Photo' %>
+  <%= builder.file_field :photo %>
+
+	<% end %>
+
+  
+    <% end %>
+    
+    <%= builder.hidden_field :status, :value => 1 %>
 <% end %>
 
+
   <p><%= f.submit "Update"%></p>
+  
+
+
 <% end %>

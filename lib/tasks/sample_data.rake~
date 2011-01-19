@@ -1,4 +1,47 @@
-require 'faker'
+
+namespace :db do
+  desc "Fill database with initial data"
+  task :initialize => :environment do
+    	
+    	create_member_statuses
+	create_profile_pic_statuses
+	create_verification_pic_statuses
+
+ end
+end
+
+
+def create_member_statuses
+
+MemberStatus.create!(:label => "verified")
+MemberStatus.create!(:label => "activated")
+MemberStatus.create!(:label => "unconfirmed")
+MemberStatus.create!(:label => "suspended")
+MemberStatus.create!(:label => "deactivated")
+MemberStatus.create!(:label => "deleted")
+
+end
+
+def create_profile_pic_statuses
+
+ProfilePicStatus.create!(:label => "processing")
+ProfilePicStatus.create!(:label => "verified")
+ProfilePicStatus.create!(:label => "invalid")
+ProfilePicStatus.create!(:label => "replaced")
+ProfilePicStatus.create!(:label => "cancelled")
+ProfilePicStatus.create!(:label => "deleted")
+
+end
+
+def create_verification_pic_statuses
+
+VerificationPicsStatus.create!(:label => "processing")
+VerificationPicsStatus.create!(:label => "approved")
+VerificationPicsStatus.create!(:label => "rejected")
+
+end
+
+
 
 namespace :db do
   desc "Fill database with sample data"

@@ -1,7 +1,16 @@
 Mojoku::Application.routes.draw do
+  get "verification_pics/new" => "verification_pics#new", :as => 'verification'
+
+  post 'verification' => 'verification_pics#create', :as => 'verification_create'
+  get 'verification' => 'verification_pics#show', :as => 'verification_show'
+
+  match 'verification_status_update' => 'verification_pics#status_update', :as => 'verification_status_update'
+  
+  match 'verification_cancel' => 'verification_pics#cancel', :as => 'verification_cancel'
+
   get "email_confirmations/create"
 
-  get "email_confirmations/verify"
+  get "email_confirmations/verify
 
   get "email_confirmations/new"
 
@@ -20,6 +29,8 @@ Mojoku::Application.routes.draw do
   
   get "member/edit_profile_pic"
   
+  match "cancel_verification" => "member#cancel_verification", 
+
   get "member/edit_email"
 
   post "member/send_confirmation"
@@ -55,7 +66,7 @@ get "member/show_album_image"
 
   get "member/edit_album_info"
 
-  match "member/udpate_album_info"
+  match "member/update_album_info"
 
 get "member/add_images"
 
@@ -82,8 +93,9 @@ post "member/save_images"
   
   get "public/member_portfolio"
 
+get "public/albums"
 
-
+match 'public/show_album'
   devise_for :admins
 
   devise_for :members,  :controllers => { :registrations => "members/registrations", :sessions => "members/sessions" }
@@ -100,7 +112,7 @@ post "member/save_images"
 
   resources :models
 
-
+  match 'public/add_to_collection' => 'public#add_to_collection', :as => 'add_to_collection' 
 
 
 

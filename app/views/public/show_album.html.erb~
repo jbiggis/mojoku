@@ -1,0 +1,22 @@
+<% title "Album" %>
+
+<table>
+
+  <tr>
+
+   
+    <th><%= button_to 'Add to collection', :action => 'add_to_collection', :id => @album.id %> </th>
+  </tr>
+
+
+
+  <% for album_image in @album_images %>
+    <tr>
+			<% image = image_tag album_image.image.url, :width=> '200'%>
+			<td><%= link_to image, '#' %></td>
+			<td><%= album_image.caption %></td>
+     
+    </tr>
+  <% end %>
+</table>
+

@@ -4,7 +4,8 @@ namespace :db do
   task :initialize => :environment do
     	
     	create_member_statuses
-
+	create_profile_pic_statuses
+	create_verification_pic_statuses
 
  end
 end
@@ -20,6 +21,27 @@ MemberStatus.create!(:label => "deactivated")
 MemberStatus.create!(:label => "deleted")
 
 end
+
+def create_profile_pic_statuses
+
+ProfilePicStatus.create!(:label => "processing")
+ProfilePicStatus.create!(:label => "verified")
+ProfilePicStatus.create!(:label => "invalid")
+ProfilePicStatus.create!(:label => "replaced")
+ProfilePicStatus.create!(:label => "cancelled")
+ProfilePicStatus.create!(:label => "deleted")
+
+end
+
+def create_verification_pic_statuses
+
+VerificationPicsStatus.create!(:label => "processing")
+VerificationPicsStatus.create!(:label => "approved")
+VerificationPicsStatus.create!(:label => "rejected")
+VerificationPicsStatus.create!(:label => "cancelled")
+end
+
+
 
 namespace :db do
   desc "Fill database with sample data"

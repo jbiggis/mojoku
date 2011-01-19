@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110112074257) do
+ActiveRecord::Schema.define(:version => 20110119072704) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(:version => 20110112074257) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cover_id"
+  end
+
+  create_table "collections", :id => false, :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "album_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "email_confirmations", :force => true do |t|
@@ -125,6 +132,12 @@ ActiveRecord::Schema.define(:version => 20110112074257) do
     t.datetime "updated_at"
   end
 
+  create_table "profile_pic_statuses", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profile_pics", :force => true do |t|
     t.integer  "member_id"
     t.datetime "created_at"
@@ -133,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20110112074257) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "status"
   end
 
   create_table "relationships", :id => false, :force => true do |t|
@@ -144,6 +158,25 @@ ActiveRecord::Schema.define(:version => 20110112074257) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "verification_pics", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "verification_pics", ["member_id"], :name => "index_verification_pics_on_member_id"
+
+  create_table "verification_pics_statuses", :force => true do |t|
+    t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,38 @@
+<% if @verification_pics.empty?%>
+
+
+<%= form_for @member, :url => verification_create_path,:html => {:multipart => true, :method => :post} do |f|%>
+
+	<%= f.fields_for :verification_pic do |builder| %>
+	
+
+
+  <% if pic = @verification_pics.find(:first, :conditions => 'status = 1') %>
+	  <p>Awaiting Confirmation:</p>
+	  <%= image_tag pic.photo.url%>
+	  
+	  <%= link_to 'Cancel Verification Request', verification_cancel_path %>
+  <% elsif pic = @verification_pics.find(:last,:conditions => 'status = 3')%>
+		  <p> Your previous uploaded photo is invalid, please upload another one.</p>
+		<%= image_tag pic.photo.url%>
+	    <%= builder.label :photo, 'Upload another photo' %>
+  <%= builder.file_field :photo %>
+<% else %>
+	
+		  <%= builder.label :photo, 'Upload a Verification Photo' %>
+		    <%= builder.file_field :photo %>
+
+	<% end %>
+
+  
+      
+    <%= builder.hidden_field :status, :value => 1 %>
+	
+		<%= builder.submit %>
+	<% end %>
+
+<% end %>
+
+<% elsif @ver %>
+
+<% end %>

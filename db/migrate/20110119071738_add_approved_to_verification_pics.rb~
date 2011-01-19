@@ -1,0 +1,9 @@
+class AddApprovedToVerificationPics < ActiveRecord::Migration
+  def self.up
+    add_column :verification_pics, :approved, :boolean
+  end
+
+  def self.down
+    remove_column :verification_pics, :approved
+  end
+end

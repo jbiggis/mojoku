@@ -1,0 +1,32 @@
+<h1><% title "My Portfolio" %></h1>
+
+
+<table>
+  <tr>
+	  <th></th>
+    <th>Title</th>
+  </tr>
+  <% for album in @albums %>
+		<div>
+			<tr>
+				<%if album.cover_id !=0 #show default album image %> 
+					<% image = image_tag AlbumImage.find(album.cover_id).image.url, :width=> '200'%>
+					<% image_placeholder = image_tag '#', :size => '200x200' %>
+		
+				<td><%= link_to image, {:controller => 'public', :action => 'show_album', :id => album.id} %></td>
+			<% else %>
+				<td><%= link_to image_placeholder, {:controller => 'member', :action => 'show_album', :id => album.id} %></td>
+			<% end %>
+			<td><%= album.title %></td>
+			<td><%= album.member.first_name + " " + album.member.last_name %> </td>
+			
+	
+			</tr>
+		</div>
+  <% end %>
+</table>
+
+<p><%= link_to "New Album", 'new_album' %></p>
+
+
+
