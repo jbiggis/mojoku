@@ -24,8 +24,26 @@ class VerificationPicsController < ApplicationController
 	 redirect_to (verification_path)
   end
 
+
+def cancel
+	current_member.verification_pics.find(:last, :conditions => 'status = 1').update_attributes(:status => 4)
+	redirect_to(verification_path)
+end
+
+def show_verification_pics
+	@verification_pics = VerificationPic.find(:all, :conditions => 'status = 1')
+	@verification_pic_statuses = VerificationPicsStatus.all
+end
+
+def verification_pic_status_update
+
+	VerificationPic.update(params[:verification_pic][:id], :status => params[:verification_pic][:status])
+
+		redirect_to (show_verification_pics_path)
+end
+
   def show
-	@profile_pics = ProfilePic.find(:all, :conditions => ['status = ?', 1])
+	@profile_pics = ProfilePic.find(:all, :conditions => 'status = 1')
 	@profile_pic_statuses = ProfilePicStatus.all
 
   end
@@ -40,11 +58,6 @@ class VerificationPicsController < ApplicationController
 
 		redirect_to (verification_path)
   end
-
-def cancel
-	current_member.verification_pics.find(:first, :conditions => 'status = 1').update_attributes(:status => 4)
-	redirect_to(verification_path)
-end
 
 
 end

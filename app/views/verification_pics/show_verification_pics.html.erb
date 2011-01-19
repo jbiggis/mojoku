@@ -1,0 +1,13 @@
+<h1>VerificationPics#create</h1>
+
+<% @verification_pics.each do |verification_pic| %>
+<%= image_tag verification_pic.photo.url %>
+
+
+<%= form_for verification_pic, :url => verification_pic_status_update_path do |f| %>
+	<%= f.hidden_field :id, :value => verification_pic.id %>
+	<%= f.collection_select :status, @verification_pic_statuses, :id, :label %>
+
+	<%= f.submit 'Update Status' %>
+<% end %>
+<% end %>

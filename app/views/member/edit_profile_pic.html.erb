@@ -13,46 +13,56 @@
     </div>
   <% end %>
 
-<% if @profile_pics.count == 1 && @profile_pics[0].status == '1' %>
-	<%= image_tag @profile_pics[0].photo.url %>
-<% elsif @profile_pics.count > 1 %>
-	<% pic = @profile_pics.find(:last, :conditions => 'status = 2') %>
+	<% if pic = @profile_pics.find(:last, :conditions => 'status = 2') %>
+		<%= image_tag pic.photo.url %>
+
+<% elsif pic = @profile_pics.find(:last, :conditions => 'status = 1') %>
 	<%= image_tag pic.photo.url %>
+
 <%end%>
 
-  <%= f.fields_for :profile_pic do |builder| %>
+    <%= f.fields_for :profile_pic do |builder| %>
+
+	<% if @member.verification_pics.find(:last, :conditions => ['status = 1 or status = 2' ] )%>
 
 
-	  <% if @profile_pics.empty?  %>
-		  <%= builder.label :photo, 'Upload a Profile Picture' %>
-		    <%= builder.file_field :photo %>
-	  <% else %>
-
-  <% if pic = @profile_pics.find(:first, :conditions => 'status = 1') %>
-	  <p>Awaiting Confirmation:</p>
-	  <%= image_tag pic.photo.url%>
-	  <p>Once this photo has been verified, it will automatically replace your current profile photo. </p>
-	  <%= link_to 'Cancel Verification Request', cancel_verification_path %>
-  <% elsif pic = @profile_pics.find(:last,:conditions => 'status = 3')%>
-		  <p> Your previous uploaded photo is invalid, please upload another one.</p>
-		<%= image_tag pic.photo.url%>
-	    <%= builder.label :photo, 'Change Photo' %>
-  <%= builder.file_field :photo %>
-<% else %>
-    <%= builder.label :photo, 'Change Photo' %>
-  <%= builder.file_field :photo %>
-
-	<% end %>
-
-  
-    <% end %>
+		<% if @profile_pics[0].created_at.nil?  %>
+			<%= builder.label :photo, 'upload a profile picture' %>
+			<%= builder.file_field :photo %>
+		
+		<% elsif pic = @profile_pics.find(:last, :conditions => 'status = 1') %>
+			<p>awaiting confirmation:</p>
+			<%= image_tag pic.photo.url%>
+			<p>once this photo has been verified, it will automatically replace your current profile photo. </p>
+			<%= link_to 'cancel verification request', cancel_verification_path %>
+	  
+		<% elsif pic = @profile_pics.find(:last,:conditions => 'status = 3')%>
+			<p> your previous uploaded photo is invalid, please upload another one.</p>
+			<%= image_tag pic.photo.url%>
+			<%= builder.label :photo, 'change photo' %>
+			<%= builder.file_field :photo %>
+		<% else %>
+			<%= builder.label :photo, 'change photo' %>
+			<%= builder.file_field :photo %>
+		<% end %>
+	
+	<% else %>
+	
+		<%= builder.label :photo, 'change photo' %>
+		<%= builder.file_field :photo %>
+	       
+		<% if @profile_pics.find(:last, :conditions => ['status = 1 or status = 2'])  %>
+			<%= link_to 'Remove Photo', remove_profile_pic_path%>
+		<% end %>
+    	<% end %>
     
     <%= builder.hidden_field :status, :value => 1 %>
 <% end %>
 
 
-  <p><%= f.submit "Update"%></p>
-  
+<p><%= f.submit "Update"%></p>
+
+
 
 
 <% end %>

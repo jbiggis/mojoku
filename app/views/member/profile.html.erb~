@@ -1,17 +1,26 @@
 <h1>My Profile</h1>
 <%= link_to "Edit Profile", '/member/edit_personal_details' %>
+	<% if pic = @member.profile_pics.find(:last, :conditions => 'status = 2') %>
+		<%= image_tag pic.photo.url %>
 
-<% if @member.profile_pics.count == 1%>
+<% elsif pic = @member.profile_pics.find(:last, :conditions => 'status = 1') %>
+	<%= image_tag pic.photo.url %>
+	
+<% if @member.profile_pics.count == 1 && @member.profile_pics[0].status == '1' %>
 	<%= image_tag @member.profile_pics[0].photo.url %>
+
+
 <% elsif @member.profile_pics.count > 1 %>
 	<% pic = @member.profile_pics.find(:last, :conditions => 'status = 2') %>
 		<%= image_tag pic.photo.url %>
 <%end%>
 
-<% unless @member.verification_pics.find(:first, :conditions => 'status =2 ')%>
-	<%= link_to "Add Verification Photo", verification_path %>
+<% unless @member.verification_pics.find(:first, :conditions => 'status =2')%>
+	<% if !@member.profile_pics.empty? && @member.profile_pics.find(:first, :conditions => 'status = 1')%>
+		<%= link_to "Add Verification Photo", verification_path %>
+	<% end %>
 <% else %>
-	<p> Verified. </p>
+	<p> Verification Picture Approved!!! </p>
 <% end %>
 
 <p>

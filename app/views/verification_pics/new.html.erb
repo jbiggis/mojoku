@@ -18,14 +18,14 @@
 	
 		  <%= builder.label :photo, 'Upload a Verification Photo' %>
 		    <%= builder.file_field :photo %>
-
+		<%= builder.submit %>
 	<% end %>
 
   
       
     <%= builder.hidden_field :status, :value => 1 %>
 	
-		<%= builder.submit %>
+
 	<% end %>
 
 

@@ -15,7 +15,7 @@ class MemberController < ApplicationController
 	  @member = Member.find(current_member.id)
 	@profile_pics = @member.profile_pics
 		if @profile_pics.empty?
-			@member.build_profile_pics
+			@member.profile_pics.build
 		end
      render :layout => "member_profile"
   end
@@ -32,16 +32,31 @@ class MemberController < ApplicationController
 #			return
 #		end
 #	else
+	if @member.verification_pics.find(:last, :conditions => ['status = 1 or status = 2' ] )
+
 		unless @member.profile_pics.create(params[:member][:profile_pic])
 			flash.now[:notice] = "There was an error encountered."
 			render :action => 'edit_profile_pic'
 			return
 		end
+	
 		if pic = @member.profile_pics.find(:first, :conditions => 'status = 3')
 			pic.update_attributes(:status => 5)
 
 		end
 			#	end
+	else	
+		if pic = ProfilePic.find(:last, :conditions => 'status = 1' )
+			pic.update_attributes(:status => 4)	
+		end
+		unless @member.profile_pics.create(params[:member][:profile_pic])
+			flash.now[:notice] = "There was an error encountered."
+			render :action => 'edit_profile_pic'
+			return
+		end
+	end	
+	
+	
 	
        	flash[:notice] = "Successfully updated profile picture."
 
@@ -50,23 +65,19 @@ class MemberController < ApplicationController
 	end
 
 	  def cancel_verification
-	current_member.profile_pics.find(:first, :conditions => 'status = 1').update_attributes(:status => 5)
+	current_member.profile_pics.find(:last, :conditions => 'status = 1').update_attributes(:status => 5)
+	if current_member
+		current_member.verification_pics.find(:last, :conditions => 'status = 1').update_attributes(:status => 4)
+	end
 	redirect_to(member_edit_profile_pic_path)
   end
 
 
-	def delete_profile_pic
+	def remove_profile_pic
 	
-		if profile_pic = current_member.profile_pics.count == 1
-			profile_pic.destroy
-		else
-			current_pic = current_member.profile_pics.find('status=?', 2)
-			current_pic.destroy
-		
-
-		end
+	ProfilePic.find(:last, :conditions => ['status = 1 or status = 2'] ).update_attributes(:status => 6)
+			redirect_to(member_edit_profile_pic_path)
 	end
-
   def edit_email
   	@member = Member.find(current_member.id)
     	render :layout => "member_profile"

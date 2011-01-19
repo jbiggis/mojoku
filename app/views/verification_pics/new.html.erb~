@@ -1,6 +1,3 @@
-<% if @verification_pics.empty?%>
-
-
 <%= form_for @member, :url => verification_create_path,:html => {:multipart => true, :method => :post} do |f|%>
 
 	<%= f.fields_for :verification_pic do |builder| %>
@@ -31,8 +28,7 @@
 		<%= builder.submit %>
 	<% end %>
 
-<% end %>
 
-<% elsif @ver %>
+
 
 <% end %>

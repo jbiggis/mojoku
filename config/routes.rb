@@ -8,6 +8,10 @@ Mojoku::Application.routes.draw do
   
   match 'verification_cancel' => 'verification_pics#cancel', :as => 'verification_cancel'
 
+  match 'show_verification_pics' => 'verification_pics#show_verification_pics', :as => 'show_verification_pics'
+
+  match 'verification_pic_status_update' => 'verification_pics#verification_pic_status_update', :as => 'verification_pic_status_update'
+
   get "email_confirmations/create"
 
   get "email_confirmations/verify"
@@ -29,6 +33,7 @@ Mojoku::Application.routes.draw do
   
   get "member/edit_profile_pic"
   
+  match 'member/remove_profile_pic' => 'member#remove_profile_pic', :as => 'remove_profile_pic'
   match "cancel_verification" => "member#cancel_verification", :as => "cancel_verification"
 
   get "member/edit_email"
