@@ -1,0 +1,37 @@
+
+
+
+<fb:registration 
+
+fields='[
+   {"name":"name"},
+   {"name":"gender"},
+   {"name":"birthday"},
+   {"name":"email"},
+
+
+   {"name":"check","description":"Check this","type":"checkbox"},
+  ]' redirect-uri="http://localhost:3000/"
+  width="1000" ></fb:registration> 
+  <script>
+	  function validate(form) {
+
+
+
+		  errors = {};
+
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+
+  
+		  
+   if(reg.test(form.alternate_email) == false) {
+    errors.alternate_email = "Email Address is invalid";
+  }
+
+
+
+  return errors;
+}
+
+</script>

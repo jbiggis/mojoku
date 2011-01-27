@@ -1,0 +1,19 @@
+
+<fb:registration 
+
+fields='[
+   {"name":"name"},
+   {"name":"foo","description":"Type foo","type":"text"},
+   {"name":"bar","description":"Type bar","type":"text"},
+   {"name":"facebooker","description":"Pick Paul","type":"select","options":
+     {"coder":"Paul","pm":"Austin","partners":"Cat"}},
+   {"name":"check","description":"Check this","type":"checkbox"},
+   {"name":"date","description":"Dec 16 2010","type":"date"},
+   {"name":"city","description":"Calgary","type":"typeahead","categories":
+     ["city"]}]' 
+
+
+  redirect-uri="http://localhost:3000/"
+  width="530">
+</fb:registration>
+

@@ -1,5 +1,5 @@
 class Album < ActiveRecord::Base
-  attr_accessible :member_id, :title, :description, :cover_id
+  attr_accessible :member_id, :title, :description, :cover_id, :likes
 
   belongs_to :member
   has_many :album_images, :dependent => :destroy

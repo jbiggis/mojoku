@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110119072704) do
+ActiveRecord::Schema.define(:version => 20110125052730) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20110119072704) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cover_id"
+    t.integer  "likes"
   end
 
   create_table "collections", :id => false, :force => true do |t|
@@ -100,9 +101,12 @@ ActiveRecord::Schema.define(:version => 20110119072704) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "status"
+    t.string   "location"
+    t.integer  "fb_id"
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true
+  add_index "members", ["fb_id"], :name => "index_members_on_fb_id", :unique => true
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "modeling_agents", :force => true do |t|

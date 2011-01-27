@@ -21,11 +21,25 @@
 	</div>
       
 	<div id='nav'>
-	<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-		<%= render 'shared/account_nav' %>
-
 	
-	</div>
+	      
+		<%= render 'shared/account_nav' %>
+	
+	
+
+	   
+
+	<!--<fb:facepile href="http://localhost:3000" width="200" max_rows="1"></fb:facepile>
+	<fb:like href="http://localhost:3000" show_faces="true" width="450"></fb:like>-->
+   
+
+
+
+   </div>
+	    
+		
+	
+
 	<div >
       		<%= render 'shared/site_nav' %>
 		<div id="notice"><%=notice%></div>

@@ -93,6 +93,10 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
 end
 
+
+def fb_registration
+end
+
 end
 
 

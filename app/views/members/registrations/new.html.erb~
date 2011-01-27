@@ -20,7 +20,7 @@
 
   <p><%= f.label :gender %><br />
   Male 
-  <%= f.radio_button :gender, 'male' %>
+  <%= f.radio_button :gender, 'male', :checked => true %>
   Female
   <%= f.radio_button :gender, 'female' %></p>
 
@@ -33,5 +33,7 @@
  
   <p><%= f.submit "Sign up" %></p>
 <% end %>
+
+
 
 <%= render :partial => "devise/shared/links" %>

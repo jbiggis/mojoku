@@ -1,0 +1,11 @@
+class AddLocationAndUsernameToMembers < ActiveRecord::Migration
+  def self.up
+    add_column :members, :location, :string
+    add_column :members, :username, :string
+  end
+
+  def self.down
+    remove_column :members, :location
+    remove_column :members, :username
+  end
+end

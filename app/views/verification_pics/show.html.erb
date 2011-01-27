@@ -1,7 +1,7 @@
 <h1>VerificationPics#create</h1>
 
 <% @profile_pics.each do |profile_pic| %>
-<%= image_tag profile_pic.verification_pic.photo.url %>
+<%= image_tag profile_pic.verification_pics.photo.url %>
 <%= image_tag profile_pic.photo.url %>
 
 <%= form_for profile_pic, :url => verification_status_update_path do |f| %>

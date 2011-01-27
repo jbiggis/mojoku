@@ -1,5 +1,8 @@
 class PublicController < ApplicationController
   def home
+ # warden.raw_session.inspect
+  #      warden.logout
+
   end
 
   def list_members
@@ -24,6 +27,28 @@ class PublicController < ApplicationController
 	#redirect_to(public_show_album_path(params[:id]))
   end
 
+  def like_album
+  
+	  @album = Album.find(params[:id])
+	  likes=@album.likes
+	  @album.update_attributes(:likes => likes + 1)
+  
+	  flash[:notice] = @album.inspect
+	  redirect_to(root_url)
+  end
+
+ def unlike_album
+  
+	  @album = Album.find(params[:id])
+	  likes=@album.likes
+	  @album.update_attributes(:likes => likes - 1)
+  
+	  flash[:notice] = @album.inspect
+	  redirect_to(root_url)
+  end
+
+
+
 
   def member_home
 	@member = Member.find(params[:id])
@@ -37,5 +62,7 @@ class PublicController < ApplicationController
 	@member = Member.find(params[:id])
   end
 
-  
+  def fb_registration
+  end
+
 end

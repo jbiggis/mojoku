@@ -8,14 +8,16 @@
       <% elsif member_signed_in? %>  
 	      <span class="greeting"><%=t :greeting%> <%= current_member.first_name %>! </span>
       	<%= link_to t(:my_account), "/member/profile", :class => "nav-link" %>	
-	<%= link_to t(:signout), destroy_member_session_path, :class => "nav-link" %>
-
+	<%= link_to t(:logout_omymod), destroy_member_session_path, :class => "nav-link" %>
+	   <%= link_to_function 'Logout', "logout()" %>
       <% else %>  
 	<% fb_signin = image_tag "fb_login.png", :alt => "Facebook" %>
-	<%= link_to fb_signin, '/auth/facebook', :class => 'fb-signin' %>
-         |
-        <%= link_to t(:signin), new_member_session_path, :class => "nav-link" %> |
+	<%# link_to fb_signin, '/auth/facebook', :class => 'fb-signin' %>
+	<fb:login-button perms="email" max-rows="1">Login/Register with Facebook</fb:login-button>
+	<!--<fb:login-button registration-url="http://localhost:3000/public/fb_registration"></fb:login-button>-->
 
+	<%= link_to t(:signin), new_member_session_path, :class => "nav-link" %> |
+	   <%= link_to_function 'Logout', "logout()" %>
           <%= link_to t(:signup), new_member_registration_path, :class => "nav-link" %>
 
 	<% end %>

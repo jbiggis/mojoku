@@ -13,6 +13,10 @@
     </div>
   <% end %>
 
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
 
   <p>
     <%= f.label :first_name %><br />
@@ -32,6 +36,11 @@
   <p>
     <%= f.label :DOB %><br />
     <%= f.date_select :DOB %>
+    </p>
+
+      <p>
+    <%= f.label :location %><br />
+    <%= f.select :location %>
     </p>
 
     <% role = @member.role %>

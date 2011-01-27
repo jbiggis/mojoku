@@ -5,7 +5,7 @@
 <%= image_tag profile_pic.photo.url %>
 
 <%= form_for profile_pic, :url => verification_status_update_path do |f| %>
-	<% f.hidden_field :id, :value => profile_pic.id %>
+	<%= f.hidden_field :id, :value => profile_pic.id %>
 	<%= f.collection_select :status, @profile_pic_statuses, :id, :label %>
 
 	<%= f.submit 'Update Status' %>

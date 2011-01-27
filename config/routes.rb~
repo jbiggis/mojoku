@@ -33,7 +33,7 @@ Mojoku::Application.routes.draw do
   
   get "member/edit_profile_pic"
   
-  mathc 'member/remove_profile_pic' => 'member#remove_profile_pic', :as => 'remove_profile_pic''
+  match 'member/remove_profile_pic' => 'member#remove_profile_pic', :as => 'remove_profile_pic'
   match "cancel_verification" => "member#cancel_verification", :as => "cancel_verification"
 
   get "member/edit_email"
@@ -60,6 +60,7 @@ Mojoku::Application.routes.draw do
     
   put "member/updaterole"
 
+  match 'member/fb_signin'
   
   get "member/portfolio"
 
@@ -100,6 +101,9 @@ post "member/save_images"
 
 get "public/albums"
 
+match "public/like_album"
+match "public/unlike_album"
+
 match 'public/show_album'
   devise_for :admins
 
@@ -109,6 +113,8 @@ match 'public/show_album'
 
   match "/members/registered" => 'members/registrations#show'
   match "/members/resend_confirmation" => 'members/sessions#resend_confirmation'
+  match "/public/fb_registration" => 'members/registrations#fb_registration'
+
   #:controller => :registrations, :action => 'registered'
   match 'email_confirmations/resend_first_confirmation'
   resources :modeling_agents

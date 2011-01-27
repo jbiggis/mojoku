@@ -3,7 +3,24 @@ class MemberController < ApplicationController
   layout "member"
 	
   def home
+  warden.raw_session.inspect
+        warden.logout
+	  
   end
+
+  def fb_signin
+	if @member = Member.find_by_fb_id(params[:fb_id])
+		sign_in_and_redirect(:member, @member)
+	elsif @member = Member.find_by_email(params[:email])
+		@member.update_attributes(:fb_id => params[:fb_id])
+		sign_in_and_redirect(:member, @member)
+	else
+		@member = Member.create!(:fb_id => params[:fb_id], :email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :gender => params[:gender], :DOB => params[:dob], :status => 3)
+		sign_in_and_redirect(:member, @member)
+	end
+  end
+
+
 
   def profile
  		@member = Member.find(current_member.id)
@@ -65,10 +82,10 @@ class MemberController < ApplicationController
 	end
 
 	  def cancel_verification
-	current_member.profile_pics.find(:last, :conditions => 'status = 1').update_attributes(:status => 5)
-	if current_member
+#	current_member.profile_pics.find(:last, :conditions => 'status = 1').update_attributes(:status => 5)
+#	if current_member
 		current_member.verification_pics.find(:last, :conditions => 'status = 1').update_attributes(:status => 4)
-	end
+#	end
 	redirect_to(member_edit_profile_pic_path)
   end
 
@@ -76,7 +93,7 @@ class MemberController < ApplicationController
 	def remove_profile_pic
 	
 	ProfilePic.find(:last, :conditions => ['status = 1 or status = 2'] ).update_attributes(:status => 6)
-		
+			redirect_to(member_edit_profile_pic_path)
 	end
   def edit_email
   	@member = Member.find(current_member.id)
